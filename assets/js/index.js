@@ -73,15 +73,15 @@ const timeFormat = (k) => k.toString().padStart(2, 0);
 loadSong(songs[songIndex]);
 
 //Update progress bar width as song plays
-const ariaprogressTime = chrono.getAttribute('aria-valuenow');
-const ariaEndTime = endtime.getAttribute('aria-label');
 audio.ontimeupdate = () => {
   const minutes = Math.floor((audio.duration % 3600) / 60);
   const secondes = Math.floor(audio.duration % 60);
 
   const minutesE = Math.floor((audio.currentTime % 3600) / 60);
   const secondesE = Math.floor(audio.currentTime % 60);
-  chrono.innerText = `${timeFormat(minutesE)}:${timeFormat(secondesE)}`;
+  setTimeout(() => {
+    chrono.innerText = `${timeFormat(minutesE)}:${timeFormat(secondesE)}`;
+  }, 5000);
   chrono.setAttribute(
     'aria-valuenow',
     `${timeFormat(minutesE)}minutes:${timeFormat(secondesE)}secondes`,
