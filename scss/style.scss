@@ -17,6 +17,10 @@ body {
   margin: 0;
 }
 
+h2 {
+  text-transform: capitalize;
+}
+
 .music-container {
   background-color: #fff;
   border-radius: 15px;
@@ -87,11 +91,16 @@ body {
   cursor: pointer;
   padding: 10px;
   margin: 0 20px;
+  transition-duration: 300ms;
 }
 
 .action-btn.action-btn-big {
   color: #cdc2d0;
   font-size: 30px;
+}
+
+.action-btn:hover {
+  color: #444;
 }
 
 .action-btn:focus {
@@ -108,7 +117,9 @@ body {
   padding: 10px 10px 10px 150px;
   opacity: 0;
   transform: translateY(0%);
-  transition: transform 0.3s ease-in, opacity 0.3s ease-in;
+  transition:
+    transform 0.3s ease-in,
+    opacity 0.3s ease-in;
   z-index: 0;
 }
 
@@ -136,4 +147,19 @@ body {
   height: 100%;
   width: 0%;
   transition: width 0.1s linear;
+}
+
+.time-bar {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 5px;
+}
+.timeupdate,
+.endtime {
+  font-size: 12px;
+  color: #444;
+}
+
+.active {
+  color: #444;
 }
