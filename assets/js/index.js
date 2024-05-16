@@ -9,11 +9,13 @@ const title = document.getElementById('title');
 const cover = document.getElementById('cover');
 const chrono = document.getElementById('timeupdate');
 const endtime = document.getElementById('endtime');
+const volume = document.getElementById('volume');
+const volumeImg = document.querySelector('.volume-img');
 
 // Song titles
 const songs = ['hey', 'summer', 'ukulele'];
 
-let songIndex = 2;
+let songIndex = 1;
 
 function loadSong(song) {
   title.innerText = song;
@@ -65,30 +67,35 @@ playBtn.addEventListener('click', () => {
   }
 });
 
-prevBtn.addEventListener('click', prevSong);
-nextBtn.addEventListener('click', nextSong);
-
 const timeFormat = (k) => k.toString().padStart(2, 0);
 //Init load song details
 loadSong(songs[songIndex]);
 
 //Update progress bar width as song plays
-audio.ontimeupdate = () => {
-  const minutes = Math.floor((audio.duration % 3600) / 60);
-  const secondes = Math.floor(audio.duration % 60);
+function setProgress(e) {
+  const width = this.clientWidth;
+  const clickX = e.offsetX;
+  const duration = audio.duration;
+  audio.currentTime = (clickX / width) * duration;
+}
 
+function updateProgress(e) {
+  const { duration, currentTime } = e.target;
+  const progressPercent = (currentTime / duration) * 100;
+  progress.style.width = `${progressPercent}%`;
+
+  // Display elapsed time
   const minutesE = Math.floor((audio.currentTime % 3600) / 60);
   const secondesE = Math.floor(audio.currentTime % 60);
-  setTimeout(() => {
-    chrono.innerText = `${timeFormat(minutesE)}:${timeFormat(secondesE)}`;
-  }, 5000);
+  chrono.innerText = `${timeFormat(minutesE)}:${timeFormat(secondesE)}`;
   chrono.setAttribute(
     'aria-valuenow',
     `${timeFormat(minutesE)}minutes:${timeFormat(secondesE)}secondes`,
   );
-  progress.style.width =
-    Math.min((audio.currentTime / audio.duration).toFixed(3) * 100, 100) + '%';
 
+  // Display total time
+  const minutes = Math.floor((audio.duration % 3600) / 60);
+  const secondes = Math.floor(audio.duration % 60);
   if (isFinite(audio.duration)) {
     endtime.innerText = `${timeFormat(minutes)}:${timeFormat(secondes)}`;
     endtime.setAttribute(
@@ -96,4 +103,19 @@ audio.ontimeupdate = () => {
       `${timeFormat(minutes)}minutes:${timeFormat(secondes)}secondes`,
     );
   }
-};
+}
+
+function setVolume() {
+  audio.muted = !audio.muted;
+
+  audio.muted
+    ? (volumeImg.src = './assets/images/mute.svg')
+    : (volumeImg.src = './assets/images/volume.svg');
+}
+
+volume.addEventListener('click', setVolume);
+
+progressContainer.addEventListener('click', setProgress);
+audio.addEventListener('timeupdate', updateProgress);
+prevBtn.addEventListener('click', prevSong);
+nextBtn.addEventListener('click', nextSong);

@@ -21,6 +21,17 @@ h2 {
   text-transform: capitalize;
 }
 
+button {
+  appearance: none;
+  -moz-appearance: none;
+  -webkit-appearance: none;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  outline: 0;
+  padding: 0;
+}
+
 .music-container {
   background-color: #fff;
   border-radius: 15px;
@@ -65,6 +76,7 @@ h2 {
   left: 0;
   animation: rotate 3s linear infinite;
   animation-play-state: paused;
+  box-shadow: 0 3px 3px 0 rgba(0, 0, 0, 0.2);
 }
 
 .music-container.play .img-container img {
@@ -98,7 +110,7 @@ h2 {
   font-size: 20px;
   cursor: pointer;
   padding: 10px;
-  margin: 0 20px;
+  margin: 0 5px;
   transition-duration: 300ms;
 }
 
@@ -168,6 +180,14 @@ h2 {
 .endtime {
   font-size: 11px;
   color: #444;
+}
+
+#volume {
+  opacity: 0.4;
+  transition-duration: 300ms;
+}
+#volume:hover {
+  opacity: 1;
 }
 
 .active {
