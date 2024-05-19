@@ -39,7 +39,7 @@ button {
   display: flex;
   position: relative;
   height: 75px;
-  margin: 100px 0;
+  margin: 100px 0 40px 0;
   z-index: 10;
 }
 
@@ -79,16 +79,6 @@ button {
 
 .music-container.play .img-container img {
   animation-play-state: running;
-}
-
-@keyframes rotate {
-  from {
-    transform: rotate(0deg);
-  }
-
-  to {
-    transform: rotate(360deg);
-  }
 }
 
 .navigation {
@@ -189,4 +179,130 @@ button {
 
 .active {
   color: #444;
+}
+
+@keyframes rotate {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.rate-container {
+  display: flex;
+  align-items: center;
+}
+
+/* Reset user agent styles */
+input[type='range'] {
+  -webkit-appearance: none;
+  appearance: none;
+  background: transparent;
+  cursor: pointer;
+}
+
+input[type='range'] {
+  height: 5px;
+  background-color: #444;
+  border-radius: 7px;
+  outline: none;
+  width: 10rem;
+}
+
+input::-webkit-slider-thumb {
+  appearance: none;
+  background-color: #f0932b;
+  height: 13px;
+  width: 13px;
+  border-radius: 50%;
+  outline: none;
+  border: none;
+  transform: scale(1.2);
+}
+
+input::-moz-range-thumb {
+  background-color: #f0932b;
+  height: 13px;
+  width: 13px;
+  border-radius: 50%;
+  outline: none;
+  border: none;
+  transform: scale(1.2);
+}
+
+/* Removes default focus */
+input[type='range']:focus {
+  outline: none;
+}
+
+/***** Chrome, Safari, Opera, and Edge Chromium *****/
+input[type='range']:focus::-webkit-slider-thumb {
+  border: none;
+  outline: 1px dashed #444;
+  outline-offset: 0.125rem;
+}
+
+/******** Firefox ********/
+input[type='range']:focus::-moz-range-thumb {
+  border: none;
+  outline: 1px dashed #444;
+  outline-offset: 0.125rem;
+}
+
+.pitch-container {
+  position: relative;
+}
+// .pitch-label {
+//   position: absolute;
+//   opacity: 0;
+//   cursor: pointer;
+// }
+
+.checkbox-custom {
+  position: absolute;
+  top: 0;
+  left: 50px;
+  height: 15px;
+  width: 15px;
+  background-color: transparent;
+  border-radius: 7px;
+  border: 2px solid #444;
+}
+
+.checkbox-custom::after {
+  position: absolute;
+  content: '';
+  left: 12px;
+  top: 12px;
+  height: 0;
+  width: 0;
+  border-radius: 5px;
+  border: solid #f0932b;
+  border-width: 0 3px 3px 0;
+  transform: rotate(0deg) scale(0);
+  opacity: 1;
+}
+
+input:checked + .checkbox-custom {
+  background-color: #fff;
+  border-radius: 5px;
+  transform: rotate(0deg) scale(1);
+  opacity: 1;
+  border: 2px solid #444;
+}
+
+.checkbox-custom:hover::after {
+  transform: rotate(45deg) scale(1);
+  opacity: 1;
+  left: 8px;
+  top: 3px;
+  width: 6px;
+  height: 12px;
+  border: solid #f0932b;
+  border-width: 0 2px 2px 0;
+  background-color: transparent;
+  border-radius: 0;
 }

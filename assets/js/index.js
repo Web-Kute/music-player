@@ -11,6 +11,8 @@ const chrono = document.getElementById('timeupdate');
 const endtime = document.getElementById('endtime');
 const volume = document.getElementById('volume');
 const volumeImg = document.querySelector('.volume-img');
+const rate = document.getElementById('rate');
+const pitch = document.getElementById('pitch');
 
 // Song titles
 const songs = ['hey', 'summer', 'ukulele'];
@@ -119,3 +121,9 @@ progressContainer.addEventListener('click', setProgress);
 audio.addEventListener('timeupdate', updateProgress);
 prevBtn.addEventListener('click', prevSong);
 nextBtn.addEventListener('click', nextSong);
+rate.addEventListener('change', (e) => {
+  audio.playbackRate = e.target.value;
+});
+pitch.addEventListener('change', (e) => {
+  audio.playbackRate = e.target.value;
+});
