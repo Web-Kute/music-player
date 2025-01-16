@@ -1,3 +1,5 @@
+@forward 'reset';
+
 * {
   box-sizing: border-box;
 }
@@ -18,6 +20,12 @@ body {
 }
 
 h2 {
+  font-size: 1.1rem;
+  font-weight: 600;
+}
+
+h3 {
+  font-size: 0.8rem;
   text-transform: capitalize;
 }
 
@@ -87,6 +95,7 @@ button {
   justify-content: center;
   background-color: #fff;
   border-radius: 10px;
+  margin-left: 2rem;
   z-index: 1;
 }
 
@@ -172,6 +181,7 @@ button {
 #volume {
   opacity: 0.4;
   transition-duration: 300ms;
+  background-color: transparent;
   &:hover {
     opacity: 1;
   }
@@ -255,11 +265,6 @@ input[type='range']:focus::-moz-range-thumb {
 .pitch-container {
   position: relative;
 }
-// .pitch-label {
-//   position: absolute;
-//   opacity: 0;
-//   cursor: pointer;
-// }
 
 .checkbox-custom {
   position: absolute;
@@ -301,8 +306,19 @@ input:checked + .checkbox-custom {
   top: 3px;
   width: 6px;
   height: 12px;
-  border: solid #f0932b;
+  border: solid rgb(240, 147, 43);
   border-width: 0 2px 2px 0;
   background-color: transparent;
   border-radius: 0;
+}
+
+.volume-icon {
+  cursor: pointer;
+}
+
+.setvolume {
+  position: relative;
+  top: -1.5rem;
+  text-align: center;
+  z-index: 15;
 }
