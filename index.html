@@ -22,10 +22,10 @@
           <h2 id="title"></h2>
           <h3 id="artist">Artiste</h3>
           <div class="progress-container" id="progress-container">
-            <div class="progress" id="progress" role="progressbar"></div>
+            <div class="progress" id="progress" tabindex="0" role="progressbar"></div>
             <div class="time-bar">
-              <div class="timeupdate" id="timeupdate" aria-valuenow>00:00</div>
-              <div class="endtime" id="endtime" aria-label>00:00</div>
+              <div class="time-label timeupdate" tabindex="0" id="timeupdate" aria-valuenow>00:00</div>
+              <div class="time-label endtime" tabindex="0" id="endtime" aria-label>00:00</div>
             </div>
           </div>
         </div>
@@ -36,15 +36,15 @@
         <div class="img-container">
           <img src="./assets/images/ukulele.jpg" alt="music-cover" id="cover" />
         </div>
-        <nav class="navigation">
-          <button id="prev" class="action-btn" aria-label="Previous">
-            <i class="fas fa-backward"></i>
+        <nav class="navigation" aria-label="Music controls" role="navigation">
+          <button tabindex="0" id="prev" class="action-btn" aria-label="Previous track">
+            <i class="fas fa-backward" aria-hidden="true"></i>
           </button>
-          <button id="play" class="action-btn action-btn-big" aria-label="Play">
-            <i class="fas fa-play"></i>
+          <button tabindex="0" id="play" class="action-btn action-btn-big" aria-label="Play/Pause">
+            <i class="fas fa-play" aria-hidden="true"></i>
           </button>
-          <button id="next" class="action-btn" aria-label="Next">
-            <i class="fas fa-forward"></i>
+          <button tabindex="0" id="next" class="action-btn" aria-label="Next track">
+            <i class="fas fa-forward" aria-hidden="true"></i>
           </button>
         </nav>
       </div>
@@ -60,15 +60,20 @@
 -->
       <div class="setvolume">
         <label for="rangeVolume">Volume</label>
-        <span id="minus"><img src="./assets/images/minus.svg" class="volume-icon" alt="Set volume">&nbsp;</span><input
-          type="range" name="rangeVolume" id="rangeVolume" min="0" max="1" step="0.01" value="0.5"
-          aria-label="Volume" /><span id="plus">&nbsp;<img src="./assets/images/plus.svg" class="volume-icon"
-            alt="Set volume"></span>
-          <button id="volume" class="action-btn" aria-label="Volume">
-            <img src="./assets/images/volume.svg" class="volume-img" alt="Set volume">
-          </button>
+        <span id="minus">
+          <img src="./assets/images/minus.svg" tabindex="0" class="volume-icon" alt="Baisser le volume">&nbsp;</span>
+        <input type="range" name="rangeVolume" id="rangeVolume" min="0" max="1" step="0.01" value="0.5"
+          aria-label="Volume" />
+        <span id="plus">&nbsp;<img src="./assets/images/plus.svg" tabindex="0" class="volume-icon"
+            alt="Augmenter le volume"></span>
+        <button id="volume" class="action-btn" aria-label="Volume">
+          <img src="./assets/images/volume.svg" tabindex="0" class="volume-img" alt="Set volume">
+        </button>
       </div>
     </section>
+    <footer>
+      <p>&copy; 2023 Music Player. All rights reserved.</p>
+    </footer>
   </main>
 </body>
 

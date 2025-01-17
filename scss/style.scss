@@ -127,7 +127,7 @@ button {
 }
 
 .action-btn:focus {
-  outline: 0;
+  outline: 1px dashed #444;
 }
 
 .music-info {
@@ -171,6 +171,10 @@ button {
   height: 100%;
   width: 0%;
   transition: width 0.1s linear;
+  &:focus {
+    outline: 1px dashed #444;
+    outline-offset: 0.125rem;
+  }
 }
 
 .time-bar {
@@ -183,6 +187,12 @@ button {
 .endtime {
   font-size: 11px;
   color: #444;
+}
+.time-label {
+  &:focus {
+    outline: 1px dashed #444;
+    outline-offset: 0.125rem;
+  }
 }
 
 #volume {
@@ -321,6 +331,10 @@ input:checked + .checkbox-custom {
 
 .volume-icon {
   cursor: pointer;
+  &:focus {
+    outline: 1px dashed #444;
+    outline-offset: 0.125rem;
+  }
 }
 
 .setvolume {
@@ -328,4 +342,8 @@ input:checked + .checkbox-custom {
   top: -1.5rem;
   text-align: center;
   z-index: 15;
+}
+
+footer {
+  text-align: center;
 }
