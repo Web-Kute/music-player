@@ -2,6 +2,7 @@ import { fetchMusicData } from './fetchapi.js';
 
 document.addEventListener('DOMContentLoaded', () => {
   const musicContainer = document.getElementById('music-container');
+  const imgContainer = document.querySelector('.img-container');
   const playBtn = document.getElementById('play');
   const prevBtn = document.getElementById('prev');
   const nextBtn = document.getElementById('next');
@@ -166,10 +167,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   volume.addEventListener('click', setVolume);
 
-  // console.log('volume', rangeVolume.value);
-
   rangeVolume.addEventListener('change', (e) => {
-    console.log('value', e.target.value);
     const volumeValue = e.target.value;
     audio.volume = volumeValue;
   });

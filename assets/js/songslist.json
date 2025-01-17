@@ -24,7 +24,7 @@
     "id": 4,
     "track": "Tangoapasionado",
     "title": "Tango Apasionado",
-    "artist": "Astor Piazolla",
+    "artist": "Astor Piazzolla",
     "jacket": "happytogether.png"
   },
   {
@@ -152,5 +152,54 @@
     "title": "The Glorious Land",
     "artist": "PJ Harvey",
     "jacket": "pjharvey.png"
+  },
+  {
+    "id": 23,
+    "track": "TheRacingRats",
+    "title": "The Racing Rats",
+    "artist": "Editors",
+    "jacket": "editors.png"
+  },
+  {
+    "id": 24,
+    "track": "ThisIsTheLife",
+    "title": "This Is The Life",
+    "artist": "Amy Macdonald",
+    "jacket": "mcdonald.png"
+  },
+  {
+    "id": 25,
+    "track": "Umbrella",
+    "title": "This Is The Life",
+    "artist": "Rihanna",
+    "jacket": "rihanna.png"
+  },
+  {
+    "id": 26,
+    "track": "TheTruth",
+    "title": "The Truth",
+    "artist": "Handsome Boy Modeling School",
+    "jacket": "handsome.png"
+  },
+  {
+    "id": 27,
+    "track": "UnderwaterLove",
+    "title": "Underwater Love",
+    "artist": "Smoke City",
+    "jacket": "smoke.png"
+  },
+  {
+    "id": 28,
+    "track": "VerdisQuo",
+    "title": "Verdis Quo",
+    "artist": "Daft Punk",
+    "jacket": "daftpunk.png"
+  },
+  {
+    "id": 29,
+    "track": "Yesterday",
+    "title": "Yesterday",
+    "artist": "The Beatles",
+    "jacket": "beatles.png"
   }
 ]
