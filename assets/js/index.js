@@ -19,7 +19,7 @@ document.addEventListener('DOMContentLoaded', () => {
     volume: document.getElementById('volume'),
     volumeImg: document.querySelector('.volume-img'),
     volumeBar: document.getElementById('volume-bar'),
-    rangeVolume: document.getElementById('range-volume')
+    rangeVolume: document.getElementById('range-volume'),
   };
 
   const {
@@ -40,7 +40,7 @@ document.addEventListener('DOMContentLoaded', () => {
     volume,
     volumeImg,
     volumeBar,
-    rangeVolume
+    rangeVolume,
   } = elements;
 
   let playListLength;
@@ -137,7 +137,7 @@ document.addEventListener('DOMContentLoaded', () => {
       const progressPercent = (audio.currentTime / audio.duration) * 100;
       progress.style.width = `${progressPercent}%`;
       if (!audio.paused && !audio.ended) {
-      requestAnimationFrame(updateProgressBar);
+        requestAnimationFrame(updateProgressBar);
       }
     };
     requestAnimationFrame(updateProgressBar);
@@ -169,9 +169,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Set initial volume
   audio.volume = 0.4;
+  let newAudioVolume;
 
   rangeVolume.addEventListener('input', function () {
     const sizeBar = this.value;
+    newAudioVolume = sizeBar;
     this.style.background = `linear-gradient(to right, #f0932b 0%, #f0932b ${sizeBar}%, #cdc2d0 ${sizeBar}%, #cdc2d0 100%)`;
     audio.volume = sizeBar / 100;
     audio.muted = false;
@@ -192,8 +194,8 @@ document.addEventListener('DOMContentLoaded', () => {
     } else {
       volumeImg.src = './assets/images/volume.svg';
       audio.volume = 0.5;
-      rangeVolume.value = 40;
-      rangeVolume.style.background = `linear-gradient(to right, #f0932b 0%, #f0932b 40%, #cdc2d0 40%, #cdc2d0 100%)`;
+      rangeVolume.value = newAudioVolume;
+      rangeVolume.style.background = `linear-gradient(to right, #f0932b 0%, #f0932b ${newAudioVolume}%, #cdc2d0 ${newAudioVolume}%, #cdc2d0 100%)`;
     }
   }
 
