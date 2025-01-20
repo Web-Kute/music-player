@@ -174,7 +174,7 @@ document.addEventListener('DOMContentLoaded', () => {
   rangeVolume.addEventListener('input', function () {
     const sizeBar = this.value;
     newAudioVolume = sizeBar;
-    this.style.background = `linear-gradient(to right, #f0932b 0%, #f0932b ${sizeBar}%, #cdc2d0 ${sizeBar}%, #cdc2d0 100%)`;
+    this.style.background = `linear-gradient(to right, #9831ff 0%, #9831ff ${sizeBar}%, #cdc2d0 ${sizeBar}%, #cdc2d0 100%)`;
     audio.volume = sizeBar / 100;
     audio.muted = false;
     volumeImg.src = './assets/images/volume.svg';
@@ -195,7 +195,7 @@ document.addEventListener('DOMContentLoaded', () => {
       volumeImg.src = './assets/images/volume.svg';
       audio.volume = 0.5;
       rangeVolume.value = newAudioVolume;
-      rangeVolume.style.background = `linear-gradient(to right, #f0932b 0%, #f0932b ${newAudioVolume}%, #cdc2d0 ${newAudioVolume}%, #cdc2d0 100%)`;
+      rangeVolume.style.background = `linear-gradient(to right, #9831ff 0%, #9831ff ${newAudioVolume}%, #cdc2d0 ${newAudioVolume}%, #cdc2d0 100%)`;
     }
   }
 

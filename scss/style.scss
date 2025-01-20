@@ -165,13 +165,13 @@ button {
   border-radius: 5px;
   cursor: pointer;
   margin: 10px 0;
-  height: 4px;
+  height: 2px;
   width: 100%;
 }
 
 .progress,
 .progress-volume {
-  background-color: #fe8daa;
+  background-color: rgb(152, 49, 255);
   border-radius: 5px;
   height: 100%;
   width: 0%;
@@ -291,7 +291,7 @@ input[type='range']:focus::-moz-range-thumb {
   height: 0;
   width: 0;
   border-radius: 5px;
-  border: solid #f0932b;
+  border: solid rgb(152, 49, 255);
   border-width: 0 3px 3px 0;
   transform: rotate(0deg) scale(0);
   opacity: 1;
@@ -312,7 +312,7 @@ input:checked + .checkbox-custom {
   top: 3px;
   width: 6px;
   height: 12px;
-  border: solid rgb(240, 147, 43);
+  border: solid #9831ff;
   border-width: 0 2px 2px 0;
   background-color: transparent;
   border-radius: 0;
@@ -357,12 +357,12 @@ input:checked + .checkbox-custom {
 #range-volume {
   background: linear-gradient(
     to right,
-    #f0932b 0%,
-    #f0932b 40%,
+    #9831ff 0%,
+    #9831ff 40%,
     #cdc2d0 40%,
     #cdc2d0 100%
   );
-  // border: solid 2px #f0932b;
+  // border: solid 2px rgb(152, 49, 255)
   border-radius: 8px;
   height: 3px;
   width: 180px;
@@ -377,7 +377,7 @@ input:checked + .checkbox-custom {
   margin-top: 1.5px;
   border-radius: 50%;
   cursor: pointer;
-  background-color: #f0932b;
+  background-color: rgb(152, 49, 255)
 }
 
 footer {
