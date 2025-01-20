@@ -1,24 +1,47 @@
 import { fetchMusicData } from './fetchapi.js';
 
 document.addEventListener('DOMContentLoaded', () => {
-  const musicContainer = document.getElementById('music-container');
-  const imgContainer = document.querySelector('.img-container');
-  const playBtn = document.getElementById('play');
-  const prevBtn = document.getElementById('prev');
-  const nextBtn = document.getElementById('next');
-  const audio = document.getElementById('audio');
-  const progress = document.getElementById('progress');
-  const progressVolume = document.getElementById('progress-volume');
-  const progressContainer = document.getElementById('progress-container');
-  const title = document.getElementById('title');
-  const artist = document.getElementById('artist');
-  const cover = document.getElementById('cover');
-  const chrono = document.getElementById('timeupdate');
-  const endtime = document.getElementById('endtime');
-  const volume = document.getElementById('volume');
-  const volumeImg = document.querySelector('.volume-img');
-  const volumeBar = document.getElementById('volume-bar');
-  const rangeVolume = document.getElementById('range-volume');
+  const elements = {
+    musicContainer: document.getElementById('music-container'),
+    imgContainer: document.querySelector('.img-container'),
+    playBtn: document.getElementById('play'),
+    prevBtn: document.getElementById('prev'),
+    nextBtn: document.getElementById('next'),
+    audio: document.getElementById('audio'),
+    progress: document.getElementById('progress'),
+    progressVolume: document.getElementById('progress-volume'),
+    progressContainer: document.getElementById('progress-container'),
+    title: document.getElementById('title'),
+    artist: document.getElementById('artist'),
+    cover: document.getElementById('cover'),
+    chrono: document.getElementById('timeupdate'),
+    endtime: document.getElementById('endtime'),
+    volume: document.getElementById('volume'),
+    volumeImg: document.querySelector('.volume-img'),
+    volumeBar: document.getElementById('volume-bar'),
+    rangeVolume: document.getElementById('range-volume')
+  };
+
+  const {
+    musicContainer,
+    imgContainer,
+    playBtn,
+    prevBtn,
+    nextBtn,
+    audio,
+    progress,
+    progressVolume,
+    progressContainer,
+    title,
+    artist,
+    cover,
+    chrono,
+    endtime,
+    volume,
+    volumeImg,
+    volumeBar,
+    rangeVolume
+  } = elements;
 
   let playListLength;
   let tuneIndex;
@@ -29,43 +52,28 @@ document.addEventListener('DOMContentLoaded', () => {
     data = await fetchMusicData(endpoint);
     tuneIndex = Math.floor(Math.random() * data.length);
     playListLength = data.length;
-    // tuneIndex = data.findIndex((song) => song.id === data[tune].id);
 
-    loadSong(
-      data[tuneIndex].id,
-      data[tuneIndex].track,
-      data[tuneIndex].title,
-      data[tuneIndex].artist,
-      data[tuneIndex].jacket,
-    );
+    const loadingSongs = (index) => {
+      loadTune(
+        data[index].id,
+        data[index].track,
+        data[index].title,
+        data[index].artist,
+        data[index].jacket,
+      );
+    };
+
+    loadingSongs(tuneIndex);
 
     const previousSong = () => {
-      tuneIndex--;
-      if (tuneIndex < 0) {
-        tuneIndex = playListLength - 1;
-      }
-      loadSong(
-        data[tuneIndex].id,
-        data[tuneIndex].track,
-        data[tuneIndex].title,
-        data[tuneIndex].artist,
-        data[tuneIndex].jacket,
-      );
+      tuneIndex = tuneIndex - 1;
+      loadingSongs(tuneIndex);
       playSong();
     };
 
     nextSong = () => {
-      tuneIndex++;
-      if (tuneIndex > playListLength - 1) {
-        tuneIndex = 0;
-      }
-      loadSong(
-        data[tuneIndex].id,
-        data[tuneIndex].track,
-        data[tuneIndex].title,
-        data[tuneIndex].artist,
-        data[tuneIndex].jacket,
-      );
+      tuneIndex = tuneIndex + 1;
+      loadingSongs(tuneIndex);
       playSong();
     };
 
@@ -74,7 +82,7 @@ document.addEventListener('DOMContentLoaded', () => {
   }
   listenTotheMusic('./assets/js/songslist.json');
 
-  function loadSong(
+  function loadTune(
     tuneIndex = 1,
     track,
     songTitle = 'Titre',
@@ -114,8 +122,6 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   const timeFormat = (k) => k.toString().padStart(2, 0);
-  //Init load song details
-  // loadSong(songs[tuneIndex]);
 
   //Update progress bar width as song plays
   function setProgress(e) {
@@ -127,8 +133,14 @@ document.addEventListener('DOMContentLoaded', () => {
 
   function updateProgress(e) {
     const { duration, currentTime } = e.target;
-    const progressPercent = (currentTime / duration) * 100;
-    progress.style.width = `${progressPercent}%`;
+    const updateProgressBar = () => {
+      const progressPercent = (audio.currentTime / audio.duration) * 100;
+      progress.style.width = `${progressPercent}%`;
+      if (!audio.paused && !audio.ended) {
+      requestAnimationFrame(updateProgressBar);
+      }
+    };
+    requestAnimationFrame(updateProgressBar);
 
     // Display elapsed time
     const minutesE = Math.floor((audio.currentTime % 3600) / 60);
@@ -168,8 +180,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
   function setVolume() {
     audio.muted = !audio.muted;
+    updateVolumeUI(audio.muted);
+  }
 
-    if (audio.muted) {
+  function updateVolumeUI(isMuted) {
+    if (isMuted) {
       volumeImg.src = './assets/images/mute.svg';
       audio.volume = 0;
       rangeVolume.value = 0;
