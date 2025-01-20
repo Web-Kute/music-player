@@ -18,11 +18,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const volume = document.getElementById('volume');
   const volumeImg = document.querySelector('.volume-img');
   const volumeBar = document.getElementById('volume-bar');
-  // const rate = document.getElementById('rate');
-  // const pitch = document.getElementById('pitch');
   const rangeVolume = document.getElementById('range-volume');
-  // const plusBtn = document.getElementById('plus');
-  // const minusBtn = document.getElementById('minus');
 
   let playListLength;
   let tuneIndex;
@@ -166,6 +162,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const sizeBar = this.value;
     this.style.background = `linear-gradient(to right, #f0932b 0%, #f0932b ${sizeBar}%, #cdc2d0 ${sizeBar}%, #cdc2d0 100%)`;
     audio.volume = sizeBar / 100;
+    audio.muted = false;
+    volumeImg.src = './assets/images/volume.svg';
   });
 
   function setVolume() {
@@ -186,17 +184,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
   volume.addEventListener('click', setVolume);
 
-
-
-
   progressContainer.addEventListener('click', setProgress);
   audio.addEventListener('timeupdate', updateProgress);
-
-
-  // rate.addEventListener('change', (e) => {
-  //   audio.playbackRate = e.target.value;
-  // });
-  // pitch.addEventListener('change', (e) => {
-  //   audio.playbackRate = e.target.value;
-  // });
 });
