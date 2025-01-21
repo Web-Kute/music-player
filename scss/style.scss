@@ -159,12 +159,14 @@ input[type='range']:focus::-moz-range-thumb {
 }
 
 .action-btn.action-btn-big {
-  color: $secondaryColor;
+  color: $primaryColor;
+  opacity: 0.7;
   font-size: 1.875rem;
 }
 
 .action-btn:hover {
-  color: $outerSpace;
+  color: $primaryColor;
+  opacity: 1;
 }
 
 .action-btn:focus {
@@ -181,7 +183,9 @@ input[type='range']:focus::-moz-range-thumb {
   padding: 10px 10px 10px 150px;
   opacity: 0;
   transform: translateY(0%);
-  transition: transform 300ms ease-in, opacity 300ms ease-in;
+  transition:
+    transform 300ms ease-in,
+    opacity 300ms ease-in;
   z-index: 0;
 }
 
