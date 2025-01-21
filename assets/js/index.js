@@ -47,6 +47,9 @@ document.addEventListener('DOMContentLoaded', () => {
   let tuneIndex;
   let data;
   let nextSong;
+  const primaryColor = '#9831ff';
+  const secondaryColor = '#cdc2d0';
+
   // Fetch music data
   async function listenTotheMusic(endpoint) {
     data = await fetchMusicData(endpoint);
@@ -66,13 +69,13 @@ document.addEventListener('DOMContentLoaded', () => {
     loadingSongs(tuneIndex);
 
     const previousSong = () => {
-      tuneIndex = tuneIndex - 1;
+      tuneIndex = (tuneIndex - 1 + playListLength) % playListLength;
       loadingSongs(tuneIndex);
       playSong();
     };
 
     nextSong = () => {
-      tuneIndex = tuneIndex + 1;
+      tuneIndex = (tuneIndex + 1) % playListLength;
       loadingSongs(tuneIndex);
       playSong();
     };
@@ -169,12 +172,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Set initial volume
   audio.volume = 0.4;
-  let newAudioVolume;
 
   rangeVolume.addEventListener('input', function () {
     const sizeBar = this.value;
-    newAudioVolume = sizeBar;
-    this.style.background = `linear-gradient(to right, #9831ff 0%, #9831ff ${sizeBar}%, #cdc2d0 ${sizeBar}%, #cdc2d0 100%)`;
+    this.style.background = `linear-gradient(to right, ${primaryColor} 0%, ${primaryColor} ${sizeBar}%, ${secondaryColor} ${sizeBar}%, ${secondaryColor} 100%)`;
     audio.volume = sizeBar / 100;
     audio.muted = false;
     volumeImg.src = './assets/images/volume.svg';
@@ -188,14 +189,13 @@ document.addEventListener('DOMContentLoaded', () => {
   function updateVolumeUI(isMuted) {
     if (isMuted) {
       volumeImg.src = './assets/images/mute.svg';
-      audio.volume = 0;
       rangeVolume.value = 0;
-      rangeVolume.style.background = '#cdc2d0';
+      rangeVolume.style.background = `linear-gradient(to right, ${secondaryColor} 0%, ${secondaryColor} 100%)`;
     } else {
       volumeImg.src = './assets/images/volume.svg';
-      audio.volume = 0.5;
-      rangeVolume.value = newAudioVolume;
-      rangeVolume.style.background = `linear-gradient(to right, #9831ff 0%, #9831ff ${newAudioVolume}%, #cdc2d0 ${newAudioVolume}%, #cdc2d0 100%)`;
+      const sizeBar = audio.volume * 100;
+      rangeVolume.value = sizeBar;
+      rangeVolume.style.background = `linear-gradient(to right, ${primaryColor} 0%, ${primaryColor} ${sizeBar}%, ${secondaryColor} ${sizeBar}%, ${secondaryColor} 100%)`;
     }
   }
 
