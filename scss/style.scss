@@ -1,15 +1,24 @@
 @forward 'reset';
 @forward 'typography';
 
+$primaryColor: #9831ff;
+$secondaryColor: #cdc2d0;
+$outerSpace: #444444;
+$white: #ffffff;
+
 * {
   box-sizing: border-box;
+}
+
+html {
+  font-size: 16px;
 }
 
 body {
   background-image: linear-gradient(
     0deg,
     rgba(247, 247, 247, 1) 23.8%,
-    rgba(252, 221, 221, 1) 92%
+    rgba(252, 221, 221, 1) 100%
   );
   height: 100vh;
   display: flex;
@@ -36,9 +45,10 @@ h3 {
 }
 
 header {
-  margin-top: 100px;
+  margin-top: 6rem;
 }
 
+/* Reset natve button */
 button {
   appearance: none;
   -moz-appearance: none;
@@ -50,8 +60,35 @@ button {
   padding: 0;
 }
 
+/* Reset user agent styles */
+input[type='range'] {
+  -webkit-appearance: none;
+  appearance: none;
+  background: transparent;
+  cursor: pointer;
+}
+
+/* Removes default focus */
+input[type='range']:focus {
+  outline: none;
+}
+
+/***** Chrome, Safari, Opera, and Edge Chromium *****/
+input[type='range']:focus::-webkit-slider-thumb {
+  border: none;
+  outline: 1px dashed $secondaryColor;
+  outline-offset: 0.125rem;
+}
+
+/******** Firefox ********/
+input[type='range']:focus::-moz-range-thumb {
+  border: none;
+  outline: 1px dashed $outerSpace;
+  outline-offset: 0.125rem;
+}
+
 .music-container {
-  background-color: #fff;
+  background-color: $white;
   border-radius: 15px;
   box-shadow: 0 20px 20px 0 rgba(252, 169, 169, 0.6);
   display: flex;
@@ -72,7 +109,7 @@ button {
 
 .img-container::after {
   content: '';
-  background-color: #fff;
+  background-color: $white;
   border-radius: 50%;
   position: absolute;
   top: 50%;
@@ -104,17 +141,17 @@ button {
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: #fff;
+  background-color: $white;
   border-radius: 10px;
   margin-left: 2rem;
   z-index: 1;
 }
 
 .action-btn {
-  background-color: #fff;
+  background-color: $white;
   border: 0;
-  color: #dfdbdf;
-  font-size: 20px;
+  color: $secondaryColor;
+  font-size: 1.5rem;
   cursor: pointer;
   padding: 10px;
   margin: 0 5px;
@@ -122,16 +159,16 @@ button {
 }
 
 .action-btn.action-btn-big {
-  color: #cdc2d0;
-  font-size: 30px;
+  color: $secondaryColor;
+  font-size: 1.875rem;
 }
 
 .action-btn:hover {
-  color: #444;
+  color: $outerSpace;
 }
 
 .action-btn:focus {
-  outline: 1px dashed #444;
+  outline: 1px dashed $outerSpace;
 }
 
 .music-info {
@@ -144,9 +181,7 @@ button {
   padding: 10px 10px 10px 150px;
   opacity: 0;
   transform: translateY(0%);
-  transition:
-    transform 300ms ease-in,
-    opacity 300ms ease-in;
+  transition: transform 300ms ease-in, opacity 300ms ease-in;
   z-index: 0;
 }
 
@@ -161,7 +196,7 @@ button {
 }
 
 .progress-container {
-  background: #fff;
+  background: $white;
   border-radius: 5px;
   cursor: pointer;
   margin: 10px 0;
@@ -169,25 +204,16 @@ button {
   width: 100%;
 }
 
-.progress,
-.progress-volume {
-  background-color: rgb(152, 49, 255);
+.progress {
+  background-color: $primaryColor;
   border-radius: 5px;
   height: 100%;
   width: 0%;
   transition: width 0.1s linear;
   &:focus {
-    outline: 1px dashed #444;
+    outline: 1px dashed $outerSpace;
     outline-offset: 0.125rem;
   }
-}
-#progress-volume {
-  position: absolute;
-  height: 3px;
-  left: 0;
-  width: 50%;
-  margin-left: auto;
-  margin-right: auto;
 }
 
 .time-bar {
@@ -198,13 +224,13 @@ button {
 
 .timeupdate,
 .endtime {
-  font-size: 11px;
-  color: #444;
+  font-size: 0.625rem;
+  color: $outerSpace;
 }
 
 .time-label {
   &:focus {
-    outline: 1px dashed #444;
+    outline: 1px dashed $outerSpace;
     outline-offset: 0.125rem;
   }
 }
@@ -222,106 +248,14 @@ button {
     animation-name: fadein;
     animation-iteration-count: 1;
     animation-timing-function: ease-in;
-    animation-duration: 400ms;
+    animation-duration: 300ms;
   }
-}
-
-@keyframes rotate {
-  from {
-    transform: rotate(0deg);
-  }
-
-  to {
-    transform: rotate(360deg);
-  }
-}
-
-.rate-container {
-  display: flex;
-  align-items: center;
-}
-
-/* Reset user agent styles */
-input[type='range'] {
-  -webkit-appearance: none;
-  appearance: none;
-  background: transparent;
-  cursor: pointer;
-}
-
-/* Removes default focus */
-input[type='range']:focus {
-  outline: none;
-}
-
-/***** Chrome, Safari, Opera, and Edge Chromium *****/
-input[type='range']:focus::-webkit-slider-thumb {
-  border: none;
-  outline: 1px dashed var(secondaryColor);
-  outline-offset: 0.125rem;
-}
-
-/******** Firefox ********/
-input[type='range']:focus::-moz-range-thumb {
-  border: none;
-  outline: 1px dashed #444;
-  outline-offset: 0.125rem;
-}
-
-.pitch-container {
-  position: relative;
-}
-
-.checkbox-custom {
-  position: absolute;
-  top: 0;
-  left: 50px;
-  height: 15px;
-  width: 15px;
-  background-color: transparent;
-  border-radius: 7px;
-  border: 2px solid #444;
-}
-
-.checkbox-custom::after {
-  position: absolute;
-  content: '';
-  left: 12px;
-  top: 12px;
-  height: 0;
-  width: 0;
-  border-radius: 5px;
-  border: solid rgb(152, 49, 255);
-  border-width: 0 3px 3px 0;
-  transform: rotate(0deg) scale(0);
-  opacity: 1;
-}
-
-input:checked + .checkbox-custom {
-  background-color: #fff;
-  border-radius: 5px;
-  transform: rotate(0deg) scale(1);
-  opacity: 1;
-  border: 2px solid #444;
-}
-
-.checkbox-custom:hover::after {
-  transform: rotate(45deg) scale(1);
-  opacity: 1;
-  left: 8px;
-  top: 3px;
-  width: 6px;
-  height: 12px;
-  border: solid #9831ff;
-  border-width: 0 2px 2px 0;
-  background-color: transparent;
-  border-radius: 0;
 }
 
 .volume-icon {
   cursor: pointer;
   &:focus {
-    outline: 1px dashed #444;
+    outline: 1px dashed $outerSpace;
     outline-offset: 0.125rem;
   }
 }
@@ -330,7 +264,7 @@ input:checked + .checkbox-custom {
   position: absolute;
   right: 0px;
   top: 82px;
-  width: 200px;
+  width: 12.5rem;
   background-color: rgba(247, 247, 247, 0.8);
   height: 40px;
   justify-content: center;
@@ -357,10 +291,10 @@ input:checked + .checkbox-custom {
 input[type='range']#range-volume {
   background: linear-gradient(
     to right,
-    #9831ff 0%,
-    #9831ff 40%,
-    #cdc2d0 40%,
-    #cdc2d0 100%
+    $primaryColor 0%,
+    $primaryColor 40%,
+    $secondaryColor 40%,
+    $secondaryColor 100%
   );
   // border: solid 2px rgb(152, 49, 255)
   border-radius: 8px;
@@ -376,7 +310,7 @@ input[type='range']#range-volume::-webkit-slider-thumb {
   margin-top: 1.5px;
   border-radius: 50%;
   cursor: pointer;
-  background-color: rgb(152, 49, 255);
+  background-color: $primaryColor;
 }
 
 input[type='range']#range-volume::-moz-range-thumb {
@@ -385,7 +319,7 @@ input[type='range']#range-volume::-moz-range-thumb {
   margin-top: 1.5px;
   border-radius: 50%;
   cursor: pointer;
-  background-color: rgb(152, 49, 255);
+  background-color: $primaryColor;
 }
 
 footer {
@@ -394,7 +328,7 @@ footer {
 }
 
 .active {
-  color: #444;
+  color: $outerSpace;
 }
 
 .show {
@@ -412,5 +346,15 @@ footer {
 
   to {
     opacity: 1;
+  }
+}
+
+@keyframes rotate {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
   }
 }
