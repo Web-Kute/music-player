@@ -219,22 +219,6 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
-  volume.addEventListener('focus', () => {
-    volumeBar.setAttribute('aria-hidden', 'false');
-  });
-
-  volume.addEventListener('blur', () => {
-    volumeBar.setAttribute('aria-hidden', 'true');
-  });
-
-  volume.addEventListener('mouseover', () => {
-    volumeBar.setAttribute('aria-hidden', 'false');
-  });
-
-  volume.addEventListener('mouseout', () => {
-    volumeBar.setAttribute('aria-hidden', 'true');
-  });
-
   volumeBar.addEventListener('mouseover', () => {
     volume.style.opacity = 1;
   });
