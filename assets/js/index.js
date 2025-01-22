@@ -69,15 +69,21 @@ document.addEventListener('DOMContentLoaded', () => {
     loadingSongs(tuneIndex);
 
     const previousSong = () => {
+      const isPlaying = musicContainer.classList.contains('play');
       tuneIndex = (tuneIndex - 1 + playListLength) % playListLength;
       loadingSongs(tuneIndex);
+      if (isPlaying) {
       playSong();
+      }
     };
 
     nextSong = () => {
+      const isPlaying = musicContainer.classList.contains('play');
       tuneIndex = (tuneIndex + 1) % playListLength;
       loadingSongs(tuneIndex);
+      if (isPlaying) {
       playSong();
+      }
     };
 
     prevBtn.addEventListener('click', previousSong);
