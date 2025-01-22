@@ -332,8 +332,10 @@ input[type='range']#range-volume::-moz-range-thumb {
 }
 
 footer {
+  font-size: 0.7rem;
   text-align: center;
   margin-top: 4rem;
+  color: darken($secondaryColor, 30%);
 }
 
 .active {
