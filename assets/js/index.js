@@ -220,12 +220,10 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   volume.addEventListener('focus', () => {
-    volumeBar.style.display = 'flex';
     volumeBar.setAttribute('aria-hidden', 'false');
   });
 
   volume.addEventListener('blur', () => {
-    volumeBar.style.display = 'none';
     volumeBar.setAttribute('aria-hidden', 'true');
   });
 

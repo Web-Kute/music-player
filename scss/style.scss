@@ -256,6 +256,9 @@ input[type='range']:focus::-moz-range-thumb {
     animation-timing-function: ease-in;
     animation-duration: 300ms;
   }
+  &:focus ~ #volume-bar {
+    display: flex;
+  }
 }
 
 .volume-icon {
