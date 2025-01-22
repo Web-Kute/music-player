@@ -202,7 +202,7 @@ input[type='range']:focus::-moz-range-thumb {
 }
 
 .progress-container {
-  background: $secondaryColor;
+  background: lighten($secondaryColor, 5%);
   border-radius: 5px;
   cursor: pointer;
   margin: 10px 0;
