@@ -227,6 +227,14 @@ document.addEventListener('DOMContentLoaded', () => {
     volumeBar.setAttribute('aria-hidden', 'true');
   });
 
+  volumeBar.addEventListener('mouseover', () => {
+    volume.style.opacity = 1;
+  });
+
+  volumeBar.addEventListener('mouseout', () => {
+    volume.removeAttribute('style');
+  });
+
   volume.addEventListener('click', setVolume);
 
   progressContainer.addEventListener('click', setProgress);

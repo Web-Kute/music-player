@@ -280,6 +280,9 @@ input[type='range']:focus::-moz-range-thumb {
   &:hover {
     display: flex;
   }
+  &:hover #volume {
+    opacity: 1;
+  }
 }
 
 #top-arrow {
