@@ -73,7 +73,7 @@ document.addEventListener('DOMContentLoaded', () => {
       tuneIndex = (tuneIndex - 1 + playListLength) % playListLength;
       loadingSongs(tuneIndex);
       if (isPlaying) {
-      playSong();
+        playSong();
       }
     };
 
@@ -82,7 +82,7 @@ document.addEventListener('DOMContentLoaded', () => {
       tuneIndex = (tuneIndex + 1) % playListLength;
       loadingSongs(tuneIndex);
       if (isPlaying) {
-      playSong();
+        playSong();
       }
     };
 
@@ -205,6 +205,14 @@ document.addEventListener('DOMContentLoaded', () => {
       rangeVolume.style.background = `linear-gradient(to right, ${primaryColor} 0%, ${primaryColor} ${sizeBar}%, ${secondaryColor} ${sizeBar}%, ${secondaryColor} 100%)`;
     }
   }
+
+  volume.addEventListener('focus', () => {
+    volumeBar.style.display = 'flex';
+  });
+
+  volume.addEventListener('blur', () => {
+    volumeBar.style.display = 'none';
+  });
 
   volume.addEventListener('click', setVolume);
 
