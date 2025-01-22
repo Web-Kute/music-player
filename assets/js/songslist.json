@@ -201,5 +201,19 @@
     "title": "Yesterday",
     "artist": "The Beatles",
     "jacket": "beatles.png"
+  },
+  {
+    "id": 30,
+    "track": "MetamorphosisOne",
+    "title": "Metamorphosis One",
+    "artist": "Phillip Glass",
+    "jacket": "glass.png"
+  },
+  {
+    "id": 31,
+    "track": "MadRush",
+    "title": "Mad Rush",
+    "artist": "Phillip Glass",
+    "jacket": "glass.png"
   }
 ]

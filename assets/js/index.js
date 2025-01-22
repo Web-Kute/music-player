@@ -172,6 +172,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Set initial volume
   audio.volume = 0.4;
+  rangeVolume.value = 40;
 
   rangeVolume.addEventListener('input', function () {
     const sizeBar = this.value;
