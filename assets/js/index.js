@@ -64,6 +64,16 @@ document.addEventListener('DOMContentLoaded', () => {
         data[index].artist,
         data[index].jacket,
       );
+
+      audio.addEventListener('loadedmetadata', () => {
+        const minutes = Math.floor((audio.duration % 3600) / 60);
+        const seconds = Math.floor(audio.duration % 60);
+        endtime.innerText = `${timeFormat(minutes)}:${timeFormat(seconds)}`;
+        endtime.setAttribute(
+          'aria-label',
+          `${timeFormat(minutes)}minutes:${timeFormat(seconds)}seconds`,
+        );
+      });
     };
 
     loadingSongs(tuneIndex);
