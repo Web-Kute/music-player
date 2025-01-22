@@ -183,6 +183,7 @@ document.addEventListener('DOMContentLoaded', () => {
   rangeVolume.addEventListener('input', function () {
     const sizeBar = this.value;
     this.style.background = `linear-gradient(to right, ${primaryColor} 0%, ${primaryColor} ${sizeBar}%, ${secondaryColor} ${sizeBar}%, ${secondaryColor} 100%)`;
+    rangeVolume.setAttribute('aria-valuenow', sizeBar);
     audio.volume = sizeBar / 100;
     audio.muted = false;
     volumeImg.src = './assets/images/volume.svg';
@@ -197,21 +198,33 @@ document.addEventListener('DOMContentLoaded', () => {
     if (isMuted) {
       volumeImg.src = './assets/images/mute.svg';
       rangeVolume.value = 0;
+      rangeVolume.setAttribute('aria-valuenow', '0');
       rangeVolume.style.background = `linear-gradient(to right, ${secondaryColor} 0%, ${secondaryColor} 100%)`;
     } else {
       volumeImg.src = './assets/images/volume.svg';
       const sizeBar = audio.volume * 100;
       rangeVolume.value = sizeBar;
+      rangeVolume.setAttribute('aria-valuenow', sizeBar);
       rangeVolume.style.background = `linear-gradient(to right, ${primaryColor} 0%, ${primaryColor} ${sizeBar}%, ${secondaryColor} ${sizeBar}%, ${secondaryColor} 100%)`;
     }
   }
 
   volume.addEventListener('focus', () => {
     volumeBar.style.display = 'flex';
+    volumeBar.setAttribute('aria-hidden', 'false');
   });
 
   volume.addEventListener('blur', () => {
     volumeBar.style.display = 'none';
+    volumeBar.setAttribute('aria-hidden', 'true');
+  });
+
+  volume.addEventListener('mouseover', () => {
+    volumeBar.setAttribute('aria-hidden', 'false');
+  });
+
+  volume.addEventListener('mouseout', () => {
+    volumeBar.setAttribute('aria-hidden', 'true');
   });
 
   volume.addEventListener('click', setVolume);

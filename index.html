@@ -49,9 +49,10 @@
           <button id="volume" class="action-btn" aria-label="Volume">
             <img src="./assets/images/volume.svg" tabindex="0" class="volume-img" alt="Set volume">
           </button>
-          <div class="setvolume" tabindex="0" id="volume-bar">
+          <div class="setvolume" tabindex="0" id="volume-bar" aria-label="Set volume" aria-hidden="true">
             <span id="top-arrow"></span>
-            <input type="range" value="40" min="0" max="100" step="0.01"  class="progress-vol" id="range-volume">
+            <input type="range" value="40" min="0" max="100" step="0.01" role="slider" class="progress-vol"
+              aria-valuemin="0" aria-valuemax="100" aria-valuenow="40" id="range-volume">
           </div>
         </nav>
       </div>
