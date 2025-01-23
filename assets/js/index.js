@@ -20,6 +20,8 @@ document.addEventListener('DOMContentLoaded', () => {
     volumeImg: document.querySelector('.volume-img'),
     volumeBar: document.getElementById('volume-bar'),
     rangeVolume: document.getElementById('range-volume'),
+    containerList: document.getElementById('container-list'),
+    songsList: document.getElementById('songs-list'),
   };
 
   const {
@@ -41,6 +43,8 @@ document.addEventListener('DOMContentLoaded', () => {
     volumeImg,
     volumeBar,
     rangeVolume,
+    containerList,
+    songsList,
   } = elements;
 
   let playListLength;
@@ -75,6 +79,24 @@ document.addEventListener('DOMContentLoaded', () => {
         );
       });
     };
+
+    /*
+      const audioElement = new Audio(`./assets/music/${song.track}.mp3`);
+      audioElement.addEventListener('loadedmetadata', () => {
+      const duration = audioElement.duration;
+      const minutes = Math.floor(duration / 60);
+      const seconds = Math.floor(duration % 60);
+
+<span>${minutes}:${seconds.toString().padStart(2, '0')}</span>
+*/
+
+    const dataLi = data.map((song) => {
+      return ` <li><span class="thumb"><img src="./assets/images/${song.jacket}" width="50" height="50"
+              alt="${song.title}"></span><span><a href="#">${song.title}</a></span><span>${song.artist}</span><span>${audio.duration}</span>
+          </li>`;
+    }).join('');
+
+    songsList.innerHTML = dataLi;
 
     loadingSongs(tuneIndex);
 

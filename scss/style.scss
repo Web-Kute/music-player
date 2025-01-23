@@ -10,6 +10,14 @@ $white: #ffffff;
   box-sizing: border-box;
 }
 
+a {
+  text-decoration: none;
+  color: $outerSpace;
+  &:hover {
+    color: $primaryColor;
+  }
+}
+
 html {
   font-size: 16px;
 }
@@ -339,6 +347,99 @@ footer {
   text-align: center;
   margin-top: 4rem;
   color: darken($secondaryColor, 30%);
+}
+
+section#player-list {
+  position: relative;
+  top: -4rem;
+  z-index: 10;
+}
+
+#container-list {
+  // position: absolute;
+  background-color: $white;
+  width: calc(100% - 40px);
+  margin-left: auto;
+  margin-right: auto;
+  padding: 0.825rem;
+  border-radius: 0 0 15px 15px;
+}
+
+.btn-list {
+  position: relative;
+  width: 2rem;
+  top: 1.5rem;
+  z-index: 2;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-left: auto;
+  margin-right: auto;
+}
+.play-btn {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background-color: $primaryColor;
+}
+
+ul {
+  list-style: none;
+  margin-top: 2rem;
+  li {
+    display: flex;
+    align-items: center;
+    justify-content: start;
+    color: $outerSpace;
+    margin-bottom: 0.5rem;
+    font-size: 0.9rem;
+    span {
+      margin-right: 2rem;
+    }
+    &:hover {
+      background-color: lighten($outerSpace, 66%);
+    }
+    &:hover .thumb::before {
+      visibility: visible;
+    }
+    &:hover .thumb::after {
+      visibility: visible;
+    }
+    .thumb {
+      position: relative;
+      cursor: pointer;
+      transition: scale 300ms;
+      &:hover {
+        scale: 1.01;
+      }
+      &::before {
+        content: '';
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        margin-left: 25%;
+        border-top: 14px solid transparent;
+        border-right: 20px solid transparent;
+        border-bottom: 14px solid transparent;
+        border-left: 20px solid $white;
+        z-index: 11;
+        visibility: hidden;
+      }
+      &::after {
+        content: '';
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        background-color: $primaryColor;
+        visibility: hidden;
+      }
+    }
+  }
 }
 
 .active {
