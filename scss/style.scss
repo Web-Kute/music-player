@@ -356,7 +356,6 @@ section#player-list {
 }
 
 #container-list {
-  // position: absolute;
   background-color: $white;
   width: calc(100% - 40px);
   margin-left: auto;
@@ -387,14 +386,20 @@ ul {
   list-style: none;
   margin-top: 2rem;
   li {
-    display: flex;
+    display: grid;
+    justify-items: stretch;
     align-items: center;
-    justify-content: start;
+    grid-template-columns: 60px 200px 120px 100px;
+    max-width: 500px;
+    grid-auto-rows: auto;
     color: $outerSpace;
     margin-bottom: 0.5rem;
-    font-size: 0.9rem;
+    font-size: 0.85rem;
     span {
-      margin-right: 2rem;
+      &:last-child {
+        font-family: 'Roboto Light', sans-serif;
+        margin-left: 0.5rem;
+      }
     }
     &:hover {
       background-color: lighten($outerSpace, 66%);
@@ -407,6 +412,7 @@ ul {
     }
     .thumb {
       position: relative;
+      width: 50px;
       cursor: pointer;
       transition: scale 300ms;
       &:hover {
@@ -417,8 +423,8 @@ ul {
         position: absolute;
         top: 50%;
         left: 50%;
-        transform: translate(-50%, -50%);
         margin-left: 25%;
+        transform: translate(-50%, -50%);
         border-top: 14px solid transparent;
         border-right: 20px solid transparent;
         border-bottom: 14px solid transparent;

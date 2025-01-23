@@ -89,14 +89,21 @@ document.addEventListener('DOMContentLoaded', () => {
 
 <span>${minutes}:${seconds.toString().padStart(2, '0')}</span>
 */
+    const dataLi = [];
+    data.forEach((song) => {
+      const audioElement = new Audio(`./assets/music/${song.track}.mp3`);
+      audioElement.addEventListener('loadedmetadata', () => {
+        const duration = audioElement.duration;
+        const minutes = Math.floor(duration / 60);
+        const seconds = Math.floor(duration % 60);
+        console.log(minutes, seconds);
 
-    const dataLi = data.map((song) => {
-      return ` <li><span class="thumb"><img src="./assets/images/${song.jacket}" width="50" height="50"
-              alt="${song.title}"></span><span><a href="#">${song.title}</a></span><span>${song.artist}</span><span>${audio.duration}</span>
-          </li>`;
-    }).join('');
-
-    songsList.innerHTML = dataLi;
+        dataLi.push(`<li><span class="thumb"><img src="./assets/images/${song.jacket}" width="50" height="50"
+              alt="${song.title}"></span><span><a href="#">${song.title}</a></span><span>${song.artist}</span><span>${minutes}&nbsp;:&nbsp;${seconds.toString().padStart(2, '0')}</span>
+          </li>`);
+        songsList.innerHTML = dataLi.join('');
+      });
+    });
 
     loadingSongs(tuneIndex);
 
