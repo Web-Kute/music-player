@@ -80,29 +80,35 @@ document.addEventListener('DOMContentLoaded', () => {
       });
     };
 
-    /*
-      const audioElement = new Audio(`./assets/music/${song.track}.mp3`);
-      audioElement.addEventListener('loadedmetadata', () => {
-      const duration = audioElement.duration;
-      const minutes = Math.floor(duration / 60);
-      const seconds = Math.floor(duration % 60);
-
-<span>${minutes}:${seconds.toString().padStart(2, '0')}</span>
-*/
     const dataLi = [];
-    data.forEach((song) => {
+    data.forEach((song, index) => {
       const audioElement = new Audio(`./assets/music/${song.track}.mp3`);
       audioElement.addEventListener('loadedmetadata', () => {
         const duration = audioElement.duration;
         const minutes = Math.floor(duration / 60);
         const seconds = Math.floor(duration % 60);
-        console.log(minutes, seconds);
 
-        dataLi.push(`<li><span class="thumb"><img src="./assets/images/${song.jacket}" width="50" height="50"
-              alt="${song.title}"></span><span><a href="#">${song.title}</a></span><span>${song.artist}</span><span>${minutes}&nbsp;:&nbsp;${seconds.toString().padStart(2, '0')}</span>
-          </li>`);
+        dataLi.push(`<li class="tune"><span class="thumb" data-index="${index}"><img src="./assets/images/${song.jacket}" width="50" height="50"
+          alt="${song.title}"></span><span><a href="#">${song.title}</a></span><span>${song.artist}</span><span>${minutes}&nbsp;:&nbsp;${seconds.toString().padStart(2, '0')}</span>
+        </li>`);
         songsList.innerHTML = dataLi.join('');
       });
+    });
+
+    songsList.addEventListener('click', (e) => {
+      const thumb = e.target.closest('.thumb');
+      if (thumb) {
+      const tunes = document.querySelectorAll('.tune');
+      tunes.forEach((item) => item.classList.remove('playing'));
+      thumb.parentNode.classList.add('playing');
+
+      tuneIndex = parseInt(thumb.getAttribute('data-index'));
+      if (!audio.paused) {
+        audio.pause();
+      }
+      loadingSongs(tuneIndex);
+      playSong();
+      }
     });
 
     loadingSongs(tuneIndex);

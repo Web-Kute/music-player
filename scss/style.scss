@@ -395,6 +395,7 @@ ul {
     color: $outerSpace;
     margin-bottom: 0.5rem;
     font-size: 0.85rem;
+    overflow: hidden;
     span {
       &:last-child {
         font-family: 'Roboto Light', sans-serif;
@@ -414,9 +415,8 @@ ul {
       position: relative;
       width: 50px;
       cursor: pointer;
-      transition: scale 300ms;
-      &:hover {
-        scale: 1.01;
+      &:hover::after {
+        background-color: darken($color: $primaryColor, $amount: 15%);
       }
       &::before {
         content: '';
@@ -446,6 +446,44 @@ ul {
       }
     }
   }
+}
+
+.playing {
+  background-color: lighten($outerSpace, 66%);
+ .thumb {
+      position: relative;
+      width: 50px;
+      cursor: pointer;
+      &:hover::after {
+        background-color: darken($color: $primaryColor, $amount: 15%);
+      }
+      &::before {
+        content: '';
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        margin-left: 25%;
+        transform: translate(-50%, -50%);
+        border-top: 14px solid transparent;
+        border-right: 20px solid transparent;
+        border-bottom: 14px solid transparent;
+        border-left: 20px solid $white;
+        z-index: 11;
+        visibility: visible;
+      }
+      &::after {
+        content: '';
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        background-color: $primaryColor;
+        visibility: visible;
+      }
+    }
 }
 
 .active {
