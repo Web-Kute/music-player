@@ -83,17 +83,24 @@ document.addEventListener('DOMContentLoaded', () => {
     };
 
     const dataLi = [];
+    let loadedCount = 0;
     data.forEach((song, index) => {
       const audioElement = new Audio(`./assets/music/${song.track}.mp3`);
+
       audioElement.addEventListener('loadedmetadata', () => {
         const duration = audioElement.duration;
         const minutes = Math.floor(duration / 60);
         const seconds = Math.floor(duration % 60);
 
-        dataLi.push(`<li class="tune"><span class="thumb link" data-index="${index}"><img src="./assets/images/${song.jacket}" width="50" height="50"
-          alt="${song.title}"></span><span class="link" data-index="${index}"><a href="#">${song.title}</a></span><span>${song.artist}</span><span>${minutes}&nbsp;:&nbsp;${seconds.toString().padStart(2, '0')}</span>
-        </li>`);
-        songsList.innerHTML = dataLi.join('');
+    dataLi[index] =
+      `<li class="tune"><span class="thumb link" data-index="${index}"><img src="./assets/images/${song.jacket}" width="50" height="50"
+      alt="${song.title}"></span><span class="link" data-index="${index}"><a href="#">${song.title}</a></span><span>${song.artist}</span><span>${minutes}&nbsp;:&nbsp;${seconds.toString().padStart(2, '0')}</span>
+    </li>`;
+
+        loadedCount++;
+        if (loadedCount === data.length) {
+          songsList.innerHTML = dataLi.join('');
+        }
       });
     });
 
