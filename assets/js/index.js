@@ -91,7 +91,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const seconds = Math.floor(duration % 60);
 
         dataLi.push(`<li class="tune"><span class="thumb" data-index="${index}"><img src="./assets/images/${song.jacket}" width="50" height="50"
-          alt="${song.title}"></span><span><a href="#">${song.title}</a></span><span>${song.artist}</span><span>${minutes}&nbsp;:&nbsp;${seconds.toString().padStart(2, '0')}</span>
+          alt="${song.title}"></span><span><a href="#" class="link">${song.title}</a></span><span>${song.artist}</span><span>${minutes}&nbsp;:&nbsp;${seconds.toString().padStart(2, '0')}</span>
         </li>`);
         songsList.innerHTML = dataLi.join('');
       });
