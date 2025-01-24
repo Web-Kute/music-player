@@ -23,6 +23,7 @@ document.addEventListener('DOMContentLoaded', () => {
     containerList: document.getElementById('container-list'),
     songsList: document.getElementById('songs-list'),
     btnList: document.querySelector('.btn-list'),
+    musicInfo: document.querySelector('.music-info'),
   };
 
   const {
@@ -47,6 +48,7 @@ document.addEventListener('DOMContentLoaded', () => {
     containerList,
     songsList,
     btnList,
+    musicInfo,
   } = elements;
 
   let playListLength;
@@ -71,6 +73,8 @@ document.addEventListener('DOMContentLoaded', () => {
         data[index].jacket,
       );
 
+      musicInfo.dataset.index = tuneIndex;
+
       audio.addEventListener('loadedmetadata', () => {
         const minutes = Math.floor((audio.duration % 3600) / 60);
         const seconds = Math.floor(audio.duration % 60);
@@ -92,8 +96,8 @@ document.addEventListener('DOMContentLoaded', () => {
         const minutes = Math.floor(duration / 60);
         const seconds = Math.floor(duration % 60);
 
-    dataLi[index] =
-      `<li class="tune"><span class="thumb link" data-index="${index}"><img src="./assets/images/${song.jacket}" width="50" height="50"
+        dataLi[index] =
+          `<li tabindex="0" class="tune"><span class="thumb link" data-index="${index}"><img src="./assets/images/${song.jacket}" width="50" height="50"
       alt="${song.title}"></span><span class="link" data-index="${index}"><a href="#">${song.title}</a></span><span>${song.artist}</span><span>${minutes}&nbsp;:&nbsp;${seconds.toString().padStart(2, '0')}</span>
     </li>`;
 
@@ -101,6 +105,30 @@ document.addEventListener('DOMContentLoaded', () => {
         if (loadedCount === data.length) {
           songsList.innerHTML = dataLi.join('');
         }
+        const thumbNail = document.querySelectorAll('.thumb');
+
+        thumbNail.forEach((thumb) => {
+          if (musicInfo.dataset.index === thumb.dataset.index) {
+            thumb.closest('li').classList.add('playing');
+          } else {
+            thumb.closest('li').classList.remove('playing');
+          }
+        });
+
+        const observer = new MutationObserver(() => {
+          thumbNail.forEach((thumb) => {
+            if (musicInfo.dataset.index === thumb.dataset.index) {
+              thumb.closest('li').classList.add('playing');
+            } else {
+              thumb.closest('li').classList.remove('playing');
+            }
+          });
+        });
+
+        observer.observe(musicInfo, {
+          attributes: true,
+          attributeFilter: ['data-index'],
+        });
       });
     });
 
