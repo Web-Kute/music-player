@@ -127,7 +127,7 @@ input[type='range']:focus::-moz-range-thumb {
   top: 50%;
   left: 50%;
   width: 20px;
-  height: 20px;
+  aspect-ratio: 1;
   transform: translate(-50%, -50%);
 }
 
@@ -328,7 +328,7 @@ input[type='range']#range-volume {
 input[type='range']#range-volume::-webkit-slider-thumb {
   -webkit-appearance: none;
   width: 14px;
-  height: 14px;
+  aspect-ratio: 1;
   margin-top: 1.5px;
   border-radius: 50%;
   cursor: pointer;
@@ -337,7 +337,7 @@ input[type='range']#range-volume::-webkit-slider-thumb {
 
 input[type='range']#range-volume::-moz-range-thumb {
   width: 14px;
-  height: 14px;
+  aspect-ratio: 1;
   margin-top: 1.5px;
   border-radius: 50%;
   cursor: pointer;
@@ -385,7 +385,7 @@ section#player-list {
 }
 .play-btn {
   width: 50px;
-  height: 50px;
+  aspect-ratio: 1;
   border-radius: 50%;
   background-color: $primaryColor;
 }
@@ -395,7 +395,6 @@ ul {
   margin-top: 2rem;
   li {
     display: grid;
-    justify-items: stretch;
     align-items: center;
     grid-template-columns: 60px 110px 110px 70px;
     max-width: 500px;
@@ -431,12 +430,12 @@ ul {
         position: absolute;
         top: 50%;
         left: 50%;
-        margin-left: 25%;
+        margin-left: 24%;
         transform: translate(-50%, -50%);
-        border-top: 14px solid transparent;
-        border-right: 20px solid transparent;
-        border-bottom: 14px solid transparent;
-        border-left: 20px solid $white;
+        border-top: 12px solid transparent;
+        border-right: 18px solid transparent;
+        border-bottom: 12px solid transparent;
+        border-left: 18px solid $white;
         z-index: 11;
         visibility: hidden;
       }
@@ -447,7 +446,7 @@ ul {
         left: 50%;
         transform: translate(-50%, -50%);
         width: 40px;
-        height: 40px;
+        aspect-ratio: 1;
         border-radius: 50%;
         background-color: $primaryColor;
         visibility: hidden;
@@ -486,7 +485,7 @@ ul {
       left: 50%;
       transform: translate(-50%, -50%);
       width: 40px;
-      height: 40px;
+      aspect-ratio: 1;
       border-radius: 50%;
       background-color: $primaryColor;
       visibility: visible;
