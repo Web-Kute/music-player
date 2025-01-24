@@ -15,8 +15,8 @@
   },
   {
     "id": 3,
-    "track": "CeciliaAnn",
-    "title": "Cecilia Ann",
+    "track": "Gigantic",
+    "title": "Gigantic",
     "artist": "Pixies",
     "jacket": "CeciliaAnn.png"
   },
@@ -204,8 +204,8 @@
   },
   {
     "id": 30,
-    "track": "MetamorphosisOne",
-    "title": "Metamorphosis One",
+    "track": "hours",
+    "title": "The hours",
     "artist": "Phillip Glass",
     "jacket": "glass.png"
   },
@@ -215,5 +215,26 @@
     "title": "Mad Rush",
     "artist": "Phillip Glass",
     "jacket": "glass.png"
+  },
+  {
+    "id": 31,
+    "track": "FiveYears",
+    "title": "Five Years",
+    "artist": "David Bowie",
+    "jacket": "bowie.png"
+  },
+  {
+    "id": 32,
+    "track": "InTheDeathCar",
+    "title": "In The Death Car",
+    "artist": "Iggy Pop & Goran",
+    "jacket": "arizona.png"
+  },
+  {
+    "id": 33,
+    "track": "TantdeNuits",
+    "title": "Tant de Nuits",
+    "artist": "Bashung",
+    "jacket": "bashung.png"
   }
 ]

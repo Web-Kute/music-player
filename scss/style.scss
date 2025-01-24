@@ -25,10 +25,11 @@ html {
 body {
   background-image: linear-gradient(
     0deg,
-    rgba(247, 247, 247, 1) 23.8%,
+    rgba(255, 255, 255, 1) 23.8%,
     rgba(252, 221, 221, 1) 100%
   );
-  height: 100vh;
+  background-repeat: no-repeat;
+  height: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -106,6 +107,7 @@ input[type='range']:focus::-moz-range-thumb {
   height: 75px;
   margin: 100px 0 40px 0;
   z-index: 10;
+  min-width: 380px;
 }
 
 .img-container {
@@ -345,7 +347,7 @@ input[type='range']#range-volume::-moz-range-thumb {
 footer {
   font-size: 0.7rem;
   text-align: center;
-  margin-top: 4rem;
+  margin-bottom: 4rem;
   color: darken($secondaryColor, 30%);
 }
 
@@ -357,13 +359,19 @@ section#player-list {
 
 #container-list {
   background-color: $white;
-  width: calc(100% - 40px);
+}
+.tunes-list {
+  width: calc(100% - 20px);
   margin-left: auto;
   margin-right: auto;
-  padding: 0.825rem;
+  padding: 0.725rem;
   border-radius: 0 0 15px 15px;
+  // transform: translateY(-100%);
+  background-color: tomato;
+  opacity: 1;
+  visibility: hidden;
+  display: none;
 }
-
 .btn-list {
   position: relative;
   width: 2rem;
@@ -389,12 +397,12 @@ ul {
     display: grid;
     justify-items: stretch;
     align-items: center;
-    grid-template-columns: 60px 200px 120px 100px;
+    grid-template-columns: 60px 110px 110px 70px;
     max-width: 500px;
     grid-auto-rows: auto;
     color: $outerSpace;
     margin-bottom: 0.5rem;
-    font-size: 0.85rem;
+    font-size: 0.7rem;
     overflow: hidden;
     span {
       &:last-child {
@@ -450,40 +458,51 @@ ul {
 
 .playing {
   background-color: lighten($outerSpace, 66%);
- .thumb {
-      position: relative;
-      width: 50px;
-      cursor: pointer;
-      &:hover::after {
-        background-color: darken($color: $primaryColor, $amount: 15%);
-      }
-      &::before {
-        content: '';
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        margin-left: 25%;
-        transform: translate(-50%, -50%);
-        border-top: 14px solid transparent;
-        border-right: 20px solid transparent;
-        border-bottom: 14px solid transparent;
-        border-left: 20px solid $white;
-        z-index: 11;
-        visibility: visible;
-      }
-      &::after {
-        content: '';
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        width: 40px;
-        height: 40px;
-        border-radius: 50%;
-        background-color: $primaryColor;
-        visibility: visible;
-      }
+  .thumb {
+    position: relative;
+    width: 50px;
+    cursor: pointer;
+    &:hover::after {
+      background-color: darken($color: $primaryColor, $amount: 15%);
     }
+    &::before {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      margin-left: 25%;
+      transform: translate(-50%, -50%);
+      border-top: 14px solid transparent;
+      border-right: 20px solid transparent;
+      border-bottom: 14px solid transparent;
+      border-left: 20px solid $white;
+      z-index: 11;
+      visibility: visible;
+    }
+    &::after {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background-color: $primaryColor;
+      visibility: visible;
+    }
+  }
+}
+
+.show-playlist {
+  visibility: visible;
+  display: block;
+  animation: fadein 1000ms;
+}
+
+.hide-playlist {
+  visibility: hidden;
+  // animation: translateYreverse 1000ms;
 }
 
 .active {
@@ -515,5 +534,23 @@ ul {
 
   to {
     transform: rotate(360deg);
+  }
+}
+
+@keyframes translateY {
+  from {
+    transform: translateY(-100%);
+  }
+  to {
+    transform: translateY(0);
+  }
+}
+
+@keyframes translateYreverse {
+  from {
+    transform: translateY(0);
+  }
+  to {
+    transform: translateY(-100%);
   }
 }

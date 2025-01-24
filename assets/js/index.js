@@ -22,6 +22,7 @@ document.addEventListener('DOMContentLoaded', () => {
     rangeVolume: document.getElementById('range-volume'),
     containerList: document.getElementById('container-list'),
     songsList: document.getElementById('songs-list'),
+    btnList: document.querySelector('.btn-list'),
   };
 
   const {
@@ -45,6 +46,7 @@ document.addEventListener('DOMContentLoaded', () => {
     rangeVolume,
     containerList,
     songsList,
+    btnList,
   } = elements;
 
   let playListLength;
@@ -98,17 +100,21 @@ document.addEventListener('DOMContentLoaded', () => {
     songsList.addEventListener('click', (e) => {
       const thumb = e.target.closest('.thumb');
       if (thumb) {
-      const tunes = document.querySelectorAll('.tune');
-      tunes.forEach((item) => item.classList.remove('playing'));
-      thumb.parentNode.classList.add('playing');
+        const tunes = document.querySelectorAll('.tune');
+        tunes.forEach((item) => item.classList.remove('playing'));
+        thumb.parentNode.classList.add('playing');
 
-      tuneIndex = parseInt(thumb.getAttribute('data-index'));
-      if (!audio.paused) {
-        audio.pause();
+        tuneIndex = parseInt(thumb.getAttribute('data-index'));
+        if (!audio.paused) {
+          audio.pause();
+        }
+        loadingSongs(tuneIndex);
+        playSong();
       }
-      loadingSongs(tuneIndex);
-      playSong();
-      }
+    });
+
+    btnList.addEventListener('click', () => {
+      containerList.classList.toggle('show-playlist');
     });
 
     loadingSongs(tuneIndex);
