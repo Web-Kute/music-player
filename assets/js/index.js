@@ -207,14 +207,17 @@ document.addEventListener('DOMContentLoaded', () => {
     audio.pause();
   }
 
-  playBtn.addEventListener('click', () => {
+  const togglePlayPause = () => {
     const isPlaying = musicContainer.classList.contains('play');
     if (isPlaying) {
       pauseSong();
     } else {
       playSong();
     }
-  });
+  };
+
+  playBtn.addEventListener('click', togglePlayPause);
+  document.addEventListener('keyup', togglePlayPause);
 
   const timeFormat = (k) => k.toString().padStart(2, 0);
 
