@@ -217,7 +217,9 @@ document.addEventListener('DOMContentLoaded', () => {
   };
 
   playBtn.addEventListener('click', togglePlayPause);
-  document.addEventListener('keyup', togglePlayPause);
+  document.addEventListener('keyup', (event) =>
+    event.code === Space ? togglePlayPause : null,
+  );
 
   const timeFormat = (k) => k.toString().padStart(2, 0);
 

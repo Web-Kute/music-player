@@ -8,6 +8,11 @@ $white: #ffffff;
 
 * {
   box-sizing: border-box;
+  &:focus-visible {
+    border: none;
+    outline: 1px dashed $secondaryColor;
+    outline-offset: 0.125rem;
+  }
 }
 
 a {
