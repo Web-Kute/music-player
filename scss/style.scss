@@ -56,7 +56,7 @@ h3 {
 }
 
 header {
-  margin-top: 6rem;
+  margin-top: 3rem;
 }
 
 /* Reset natve button */
@@ -101,7 +101,7 @@ input[type='range']:focus::-moz-range-thumb {
 .music-container {
   background-color: $white;
   border-radius: 15px;
-  box-shadow: 0 20px 20px 0 rgba(252, 169, 169, 0.6);
+  // box-shadow: 0 20px 20px 0 rgba(252, 169, 169, 0.6);
   display: flex;
   position: relative;
   height: 75px;
@@ -375,14 +375,18 @@ section#player-list {
 .btn-list {
   position: relative;
   width: 2rem;
-  top: 1.5rem;
+  top: 1.1rem;
   z-index: 2;
   display: flex;
   justify-content: center;
   align-items: center;
   margin-left: auto;
   margin-right: auto;
+  svg {
+    stroke: $primaryColor;
+  }
 }
+
 .play-btn {
   width: 50px;
   aspect-ratio: 1;

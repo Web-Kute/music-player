@@ -50,10 +50,10 @@
   },
   {
     "id": 8,
-    "track": "Fortune",
-    "title": "Carmina Burana",
-    "artist": "Carl Orff",
-    "jacket": "carlorff.png"
+    "track": "Concerto2",
+    "title": "Piano Concerto No.2",
+    "artist": "Sergueï Rachmaninov",
+    "jacket": "rachmaninov.png"
   },
   {
     "id": 9,
@@ -236,5 +236,12 @@
     "title": "Tant de Nuits",
     "artist": "Bashung",
     "jacket": "bashung.png"
+  },
+  {
+    "id": 35,
+    "track": "Luna",
+    "title": "Luna",
+    "artist": "Les Têtes Raides",
+    "jacket": "tetesraides.png"
   }
 ]
