@@ -64,10 +64,10 @@
   },
   {
     "id": 10,
-    "track": "LaVieEnRose",
-    "title": "La vie en rose",
-    "artist": "Grace Jones",
-    "jacket": "gracejones.png"
+    "track": "SW",
+    "title": "SW",
+    "artist": "Blonde Redhead",
+    "jacket": "bredhead.png"
   },
   {
     "id": 11,
@@ -113,10 +113,10 @@
   },
   {
     "id": 17,
-    "track": "ShesaLady",
-    "title": "She is a Lady",
-    "artist": "Pulp",
-    "jacket": "pulp.png"
+    "track": "NoSurprises",
+    "title": "No Surprises",
+    "artist": "Radiohead",
+    "jacket": "radiohead.png"
   },
   {
     "id": 18,
@@ -169,10 +169,10 @@
   },
   {
     "id": 25,
-    "track": "Umbrella",
-    "title": "Umbrella",
-    "artist": "Rihanna",
-    "jacket": "rihanna.png"
+    "track": "DoULoveMe",
+    "title": "Do You Love Me?",
+    "artist": "Nick Cave & The Bad Seeds",
+    "jacket": "nickcave.png"
   },
   {
     "id": 26,
