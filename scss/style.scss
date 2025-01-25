@@ -1,5 +1,8 @@
 @forward 'reset';
+@forward 'mixins';
 @forward 'typography';
+
+@use 'mixins';
 
 $primaryColor: #9831ff;
 $secondaryColor: #cdc2d0;
@@ -9,9 +12,7 @@ $white: #ffffff;
 * {
   box-sizing: border-box;
   &:focus-visible {
-    border: none;
-    outline: 1px dashed $secondaryColor;
-    outline-offset: 0.125rem;
+    @include mixins.outline-dashed($outerSpace);
   }
 }
 
@@ -89,24 +90,9 @@ input[type='range']:focus {
   outline: none;
 }
 
-/***** Chrome, Safari, Opera, and Edge Chromium *****/
-input[type='range']:focus::-webkit-slider-thumb {
-  border: none;
-  outline: 1px dashed $secondaryColor;
-  outline-offset: 0.125rem;
-}
-
-/******** Firefox ********/
-input[type='range']:focus::-moz-range-thumb {
-  border: none;
-  outline: 1px dashed $outerSpace;
-  outline-offset: 0.125rem;
-}
-
 .music-container {
   background-color: $white;
   border-radius: 15px;
-  // box-shadow: 0 20px 20px 0 rgba(252, 169, 169, 0.6);
   display: flex;
   position: relative;
   height: 75px;
@@ -122,18 +108,13 @@ input[type='range']:focus::-moz-range-thumb {
   width: 110px;
   height: 110px;
   z-index: 2;
-}
-
-.img-container::after {
-  content: '';
-  background-color: $white;
-  border-radius: 50%;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  width: 20px;
-  aspect-ratio: 1;
-  transform: translate(-50%, -50%);
+  &::after {
+    content: '';
+    background-color: $white;
+    position: absolute;
+    @include mixins.center();
+    @include mixins.circle(20px);
+  }
 }
 
 .img-container img {
@@ -155,9 +136,7 @@ input[type='range']:focus::-moz-range-thumb {
 
 .navigation {
   position: relative;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  @include mixins.flex-center();
   background-color: $white;
   border-radius: 10px;
   margin-left: 2rem;
@@ -172,22 +151,12 @@ input[type='range']:focus::-moz-range-thumb {
   cursor: pointer;
   padding: 10px;
   margin: 0 5px;
-  transition-duration: 300ms;
 }
 
 .action-btn.action-btn-big {
   color: $primaryColor;
   opacity: 0.7;
   font-size: 1.875rem;
-}
-
-.action-btn:hover {
-  color: $primaryColor;
-  opacity: 1;
-}
-
-.action-btn:focus {
-  outline: 1px dashed $outerSpace;
 }
 
 .music-info {
@@ -204,16 +173,15 @@ input[type='range']:focus::-moz-range-thumb {
     transform 300ms ease-in,
     opacity 300ms ease-in;
   z-index: 0;
+  h2 {
+    margin: 0;
+    font-family: 'Roboto Light', sans-serif;
+  }
 }
 
 .music-container.play .music-info {
   opacity: 1;
   transform: translateY(-100%);
-}
-
-.music-info h2 {
-  margin: 0;
-  font-weight: 100;
 }
 
 .progress-container {
@@ -230,11 +198,7 @@ input[type='range']:focus::-moz-range-thumb {
   border-radius: 5px;
   height: 100%;
   width: 0%;
-  transition: width 0.1s linear;
-  &:focus {
-    outline: 1px dashed $outerSpace;
-    outline-offset: 0.125rem;
-  }
+  @include mixins.transition('width', 100ms, linear);
 }
 
 .time-bar {
@@ -249,18 +213,10 @@ input[type='range']:focus::-moz-range-thumb {
   color: $outerSpace;
 }
 
-.time-label {
-  &:focus {
-    outline: 1px dashed $outerSpace;
-    outline-offset: 0.125rem;
-  }
-}
-
 #volume {
   opacity: 0.4;
   background-color: transparent;
   height: 90px;
-  transition: opacity 300ms ease-out;
   &:hover {
     opacity: 1;
   }
@@ -271,26 +227,18 @@ input[type='range']:focus::-moz-range-thumb {
     animation-timing-function: ease-in;
     animation-duration: 300ms;
   }
-  &:focus ~ #volume-bar {
+  &:focus-visible ~ #volume-bar {
     display: flex;
-  }
-}
-
-.volume-icon {
-  cursor: pointer;
-  &:focus {
-    outline: 1px dashed $outerSpace;
-    outline-offset: 0.125rem;
   }
 }
 
 #volume-bar {
   position: absolute;
   right: 0px;
-  top: 82px;
+  top: 5.125rem;
   width: 12.5rem;
   background-color: rgba(247, 247, 247, 0.8);
-  height: 40px;
+  height: 2.5rem;
   justify-content: center;
   align-items: center;
   border-radius: 10px;
@@ -323,28 +271,25 @@ input[type='range']#range-volume {
     $secondaryColor 40%,
     $secondaryColor 100%
   );
-  // border: solid 2px rgb(152, 49, 255)
   border-radius: 8px;
   height: 3px;
-  width: 180px;
+  width: 11.25rem;
   outline: none;
 }
 
+/***** Chrome, Safari, Opera, and Edge Chromium *****/
 input[type='range']#range-volume::-webkit-slider-thumb {
   -webkit-appearance: none;
-  width: 14px;
-  aspect-ratio: 1;
+  @include mixins.circle(14px);
   margin-top: 1.5px;
-  border-radius: 50%;
   cursor: pointer;
   background-color: $primaryColor;
 }
 
+/******** Firefox ********/
 input[type='range']#range-volume::-moz-range-thumb {
-  width: 14px;
-  aspect-ratio: 1;
+  @include mixins.circle(14px);
   margin-top: 1.5px;
-  border-radius: 50%;
   cursor: pointer;
   background-color: $primaryColor;
 }
@@ -365,6 +310,7 @@ section#player-list {
 #container-list {
   background-color: $white;
 }
+
 .tunes-list {
   width: calc(100% - 20px);
   margin-left: auto;
@@ -377,25 +323,19 @@ section#player-list {
   visibility: hidden;
   display: none;
 }
+
 .btn-list {
   position: relative;
   width: 2rem;
   top: 1.1rem;
   z-index: 2;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  @include mixins.flex-center();
   margin-left: auto;
   margin-right: auto;
-  svg {
-    stroke: $primaryColor;
-  }
 }
 
 .play-btn {
-  width: 50px;
-  aspect-ratio: 1;
-  border-radius: 50%;
+  @include mixins.circle(50px);
   background-color: $primaryColor;
 }
 
@@ -406,8 +346,8 @@ ul {
     display: grid;
     align-items: center;
     grid-template-columns: 60px 110px 110px 70px;
-    max-width: 500px;
     grid-auto-rows: auto;
+    max-width: 500px;
     color: $outerSpace;
     margin-bottom: 0.5rem;
     font-size: 0.7rem;
@@ -437,10 +377,8 @@ ul {
       &::before {
         content: '';
         position: absolute;
-        top: 50%;
-        left: 50%;
+        @include mixins.center();
         margin-left: 24%;
-        transform: translate(-50%, -50%);
         border-top: 12px solid transparent;
         border-right: 18px solid transparent;
         border-bottom: 12px solid transparent;
@@ -451,12 +389,8 @@ ul {
       &::after {
         content: '';
         position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        width: 40px;
-        aspect-ratio: 1;
-        border-radius: 50%;
+        @include mixins.center();
+        @include mixins.circle(40px);
         background-color: $primaryColor;
         visibility: hidden;
       }
@@ -476,26 +410,20 @@ ul {
     &::before {
       content: '';
       position: absolute;
-      top: 50%;
-      left: 50%;
-      margin-left: 25%;
-      transform: translate(-50%, -50%);
-      border-top: 14px solid transparent;
-      border-right: 20px solid transparent;
-      border-bottom: 14px solid transparent;
-      border-left: 20px solid $white;
+      @include mixins.center();
+      margin-left: 24%;
+      border-top: 12px solid transparent;
+      border-right: 18px solid transparent;
+      border-bottom: 12px solid transparent;
+      border-left: 18px solid $white;
       z-index: 11;
       visibility: visible;
     }
     &::after {
       content: '';
       position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      width: 40px;
-      aspect-ratio: 1;
-      border-radius: 50%;
+      @include mixins.center();
+      @include mixins.circle(40px);
       background-color: $primaryColor;
       visibility: visible;
     }
@@ -503,14 +431,13 @@ ul {
 }
 
 .show-playlist {
-  visibility: visible;
   display: block;
+  visibility: visible;
   animation: fadein 1000ms;
 }
 
 .hide-playlist {
   visibility: hidden;
-  // animation: translateYreverse 1000ms;
 }
 
 .active {

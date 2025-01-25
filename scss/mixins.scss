@@ -1,0 +1,27 @@
+@mixin flex-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+@mixin transition($property, $duration, $timing) {
+  transition: #{$property} #{$duration} #{$timing};
+}
+
+@mixin outline-dashed($color) {
+  border: none;
+  outline: 1px dashed $color;
+  outline-offset: 0.125rem;
+}
+
+@mixin circle($width) {
+  width: $width;
+  aspect-ratio: 1;
+  border-radius: 50%;
+}
+
+@mixin center() {
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
