@@ -18,7 +18,7 @@
     "track": "Gigantic",
     "title": "Gigantic",
     "artist": "Pixies",
-    "jacket": "CeciliaAnn.png"
+    "jacket": "pixies.png"
   },
   {
     "id": 4,
@@ -30,9 +30,9 @@
   {
     "id": 5,
     "track": "DanceMeToTheEndOfLove",
-    "title": "Dance Me",
-    "artist": "Madeleine Peyroux",
-    "jacket": "endoflove.png"
+    "title": "Dance Me To...",
+    "artist": "Leonard Cohen",
+    "jacket": "peyroux.png"
   },
   {
     "id": 6,
@@ -243,5 +243,12 @@
     "title": "Luna",
     "artist": "Les Têtes Raides",
     "jacket": "tetesraides.png"
+  },
+  {
+    "id": 36,
+    "track": "TheSweetestThing",
+    "title": "The Sweetest Thing",
+    "artist": "Camera Obscura",
+    "jacket": "obscura.png"
   }
 ]
