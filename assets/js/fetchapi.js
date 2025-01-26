@@ -1,9 +1,13 @@
 // const baseURL = 'https://api.deezer.com/';
 // console.log(baseURL);
 export async function fetchMusicData(endpoint) {
-  const response = await fetch(endpoint);
-  const data = await response.json();
-  return data;
+  try {
+    const response = await fetch(endpoint);
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    console.log(error);
+  }
 }
 
 // https://developers.deezer.com/guidelines/getting_started
