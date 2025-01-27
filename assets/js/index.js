@@ -1,4 +1,5 @@
 import { fetchMusicData } from './fetchapi.js';
+import { showSpinner, hideSpinner } from './spinner.js';
 
 document.addEventListener('DOMContentLoaded', () => {
   const elements = {
@@ -63,7 +64,7 @@ document.addEventListener('DOMContentLoaded', () => {
     data = await fetchMusicData(endpoint);
     tuneIndex = Math.floor(Math.random() * data.length);
     playListLength = data.length;
-
+    showSpinner();
     const loadingSongs = (index) => {
       loadTune(
         data[index].id,
@@ -104,6 +105,7 @@ document.addEventListener('DOMContentLoaded', () => {
         loadedCount++;
         if (loadedCount === data.length) {
           songsList.innerHTML = dataLi.join('');
+          hideSpinner();
         }
         const thumbNail = document.querySelectorAll('.thumb');
 
