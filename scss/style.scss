@@ -46,19 +46,22 @@ body {
 
 h1 {
   font-family: 'Roboto Slab Regular', sans-serif;
-  color: $primaryColor;
-  text-shadow: 1px 1px $secondaryColor;
   font-size: 1.5rem;
   font-weight: 700;
+  color: $primaryColor;
+  text-shadow: 1px 1px $secondaryColor;
 }
 
 h2 {
+  font-family: 'Roboto Light', sans-serif;
   font-size: 1rem;
-  font-weight: 600;
+  font-weight: 100;
 }
 
 h3 {
+  font-family: 'Roboto medium', sans-serif;
   font-size: 0.8rem;
+  font-weight: 400;
   text-transform: capitalize;
 }
 
@@ -182,10 +185,6 @@ input[type='range']:focus {
     transform 300ms ease-in,
     opacity 300ms ease-in;
   z-index: 0;
-  h2 {
-    margin: 0;
-    font-family: 'Roboto Light', sans-serif;
-  }
 }
 
 .music-container.play .music-info {
