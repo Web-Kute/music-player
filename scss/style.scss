@@ -152,12 +152,20 @@ input[type='range']:focus {
   cursor: pointer;
   padding: 10px;
   margin: 0 5px;
+  transition: color 300ms;
+  &:hover {
+    color: $primaryColor;
+  }
 }
 
 .action-btn.action-btn-big {
   color: $primaryColor;
-  opacity: 0.7;
+  opacity: 0.5;
   font-size: 1.875rem;
+  transition: opacity 300ms;
+  &:hover {
+    opacity: 1;
+  }
 }
 
 .music-info {
