@@ -361,6 +361,7 @@ ul {
     margin-bottom: 0.5rem;
     font-size: 0.7rem;
     overflow: hidden;
+    transition: background-color 300ms;
     span {
       &:last-child {
         font-family: 'Roboto Light', sans-serif;
