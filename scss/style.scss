@@ -152,8 +152,8 @@ input[type='range']:focus {
   border: 0;
   color: $secondaryColor;
   cursor: pointer;
-  padding: 10px;
-  margin: 0 5px;
+  padding: 5px;
+  margin: 0 7px;
   transition: color 300ms;
   &:hover {
     color: $primaryColor;
@@ -211,12 +211,8 @@ input[type='range']:focus {
 }
 
 #volume {
-  opacity: 0.6;
   background-color: transparent;
   height: 90px;
-  &:hover {
-    opacity: 1;
-  }
   &:hover ~ #volume-bar {
     display: flex;
     animation-name: fadein;

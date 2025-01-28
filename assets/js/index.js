@@ -281,7 +281,12 @@ document.addEventListener('DOMContentLoaded', () => {
     rangeVolume.setAttribute('aria-valuenow', sizeBar);
     audio.volume = sizeBar / 100;
     audio.muted = false;
-    volumeImg.src = './assets/images/volume.svg';
+    volume.querySelector('.btn-volume').classList.remove('hide');
+    volume.querySelector('.btn-mute').classList.add('hide');
+    if (rangeVolume === 0 || audio.volume === 0) {
+      volume.querySelector('.btn-volume').classList.add('hide');
+      volume.querySelector('.btn-mute').classList.remove('hide');
+    }
   });
 
   function setVolume() {
