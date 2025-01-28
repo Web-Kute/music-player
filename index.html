@@ -50,7 +50,7 @@
   </header>
   <main>
     <section>
-      <div class="music-container" id="music-container">
+      <article class="music-container" id="music-container">
         <div class="music-info">
           <h2 id="title">Titre</h2>
           <h3 id="artist">Artiste</h3>
@@ -95,28 +95,28 @@
               <use xlink:href="#btn-mute"></use>
             </svg>
           </button>
-          <div class="setvolume" tabindex="0" id="volume-bar" aria-label="Set volume">
+          <div class="setvolume" tabindex="0" id="volume-bar" aria-labelledby="volume-label">
             <span id="top-arrow"></span>
-            <input type="range" value="40" min="0" max="100" step="0.01" class="progress-vol" aria-valuenow="40"
-              id="range-volume">
+            <label id="volume-label" class="visually-hidden"></label>
+            <input type="range" value="40" min="0" max="100" step="0.01" class="progress-vol" aria-valuenow="40" id="range-volume">
           </div>
         </nav>
-      </div>
-    </section>
-    <section id="player-list">
-      <button class="btn-list">
-        <svg class="btn-play" focusable="false" aria-hidden="false">
-          <use xlink:href="#btn-list"></use>
-        </svg>
-      </button>
-      <div id="container-list" class="tunes-list">
-        <ul id="songs-list">
-          <li><span class="thumb"><img src="./assets/images/amy.png" width="50" height="50"
-                alt="Amy Winehouse"></span><span><a href="#">Back to Black</a></span><span>Amy
-              Winehouse</span><span>3:32</span>
-          </li>
-        </ul>
-      </div>
+      </article>
+      <article id="player-list">
+        <button class="btn-list">
+          <svg class="btn-play" focusable="false" aria-hidden="false">
+            <use xlink:href="#btn-list"></use>
+          </svg>
+        </button>
+        <div id="container-list" class="tunes-list">
+          <ul id="songs-list">
+            <li><span class="thumb"><img src="./assets/images/amy.png" width="50" height="50"
+                  alt="Amy Winehouse"></span><span><a href="#">Back to Black</a></span><span>Amy
+                Winehouse</span><span>3:32</span>
+            </li>
+          </ul>
+        </div>
+      </article>
     </section>
     <footer>
       <p>&copy; 2023 Music Player. All rights reserved.</p>
