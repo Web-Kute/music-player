@@ -291,12 +291,16 @@ document.addEventListener('DOMContentLoaded', () => {
 
   function updateVolumeUI(isMuted) {
     if (isMuted) {
-      volumeImg.src = './assets/images/mute.svg';
+      // volumeImg.src = './assets/images/mute.svg';
+      volume.querySelector('.btn-volume').classList.add('hide');
+      volume.querySelector('.btn-mute').classList.remove('hide');
       rangeVolume.value = 0;
       rangeVolume.setAttribute('aria-valuenow', '0');
       rangeVolume.style.background = `linear-gradient(to right, ${secondaryColor} 0%, ${secondaryColor} 100%)`;
     } else {
-      volumeImg.src = './assets/images/volume.svg';
+      // volumeImg.src = './assets/images/volume.svg';
+      volume.querySelector('.btn-volume').classList.remove('hide');
+      volume.querySelector('.btn-mute').classList.add('hide');
       const sizeBar = audio.volume * 100;
       rangeVolume.value = sizeBar;
       rangeVolume.setAttribute('aria-valuenow', sizeBar);

@@ -24,12 +24,16 @@
     </symbol>
     <symbol id="btn-list" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
       stroke="#9831ff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-      <path d="M19 9.5H5M21 4.5H3M21 14.5H3M19 19.5H5">
+      <path d="M19 9.5H5M21 4.5H3M21 14.5H3M19 19.5H5"></path>
     </symbol>
     <symbol id="btn-volume" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
       stroke="#9831ff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
       <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
       <path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"></path>
+    </symbol>
+    <symbol id="btn-mute" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+      stroke="#9831ff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M11 5L6 9H2v6h4l5 4zM22 9l-6 6M16 9l6 6"></path>
     </symbol>
     <symbol id="btn-skipback" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
       fill="#9831ff" stroke="#9831ff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -85,8 +89,11 @@
             </svg>
           </button>
           <button id="volume" class="action-btn" aria-label="Volume">
-            <svg focusable="false" aria-hidden="false">
+            <svg class="btn-nav btn-volume" focusable="false" aria-hidden="false">
               <use xlink:href="#btn-volume"></use>
+            </svg>
+            <svg class="btn-nav btn-mute hide" focusable="false" aria-hidden="false">
+              <use xlink:href="#btn-mute"></use>
             </svg>
           </button>
           <div class="setvolume" tabindex="0" id="volume-bar" aria-label="Set volume">
