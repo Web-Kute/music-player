@@ -5,13 +5,43 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.2/css/all.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
   <link rel="stylesheet" href="./assets/css/style.min.css">
   <script type="module" src="./assets/js/index.js"></script>
   <title>Music Player</title>
 </head>
 
 <body>
+  <svg width="0" height="0" style="position: absolute">
+    <symbol id="btn-play" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="#9831ff"
+      stroke="#9831ff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <polygon points="5 3 19 12 5 21 5 3"></polygon>
+    </symbol>
+    <symbol id="btn-pause" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+      stroke="#9831ff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <rect x="6" y="4" width="4" height="16"></rect>
+      <rect x="14" y="4" width="4" height="16"></rect>
+    </symbol>
+    <symbol id="btn-list" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+      stroke="#9831ff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M19 9.5H5M21 4.5H3M21 14.5H3M19 19.5H5">
+    </symbol>
+    <symbol id="btn-volume" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+      stroke="#9831ff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+      <path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"></path>
+    </symbol>
+    <symbol id="btn-skipback" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+      fill="#9831ff" stroke="#9831ff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <polygon points="19 20 9 12 19 4 19 20"></polygon>
+      <line x1="5" y1="19" x2="5" y2="5"></line>
+    </symbol>
+    <symbol id="btn-skipforward" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+      fill="#9831ff" stroke="#9831ff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <polygon points="5 4 15 12 5 20 5 4"></polygon>
+      <line x1="19" y1="5" x2="19" y2="19"></line>
+    </symbol>
+  </svg>
   <header>
     <h1>Nosta Musica</h1>
   </header>
@@ -37,16 +67,27 @@
         </div>
         <nav class="navigation" aria-label="Music controls">
           <button tabindex="0" id="prev" class="action-btn" aria-label="Previous track">
-            <i class="fas fa-backward"></i>
+            <svg class="btn-nav" focusable="false" aria-hidden="true">
+              <use xlink:href="#btn-skipback"></use>
+            </svg>
           </button>
           <button tabindex="0" id="play" class="action-btn action-btn-big" aria-label="Play/Pause">
-            <i class="fas fa-play"></i>
+            <svg class="btn-nav btn-play" focusable="false" aria-hidden="true">
+              <use xlink:href="#btn-play"></use>
+            </svg>
+            <svg class="btn-nav btn-pause hide" focusable="false" aria-hidden="false">
+              <use xlink:href="#btn-pause"></use>
+            </svg>
           </button>
           <button tabindex="0" id="next" class="action-btn" aria-label="Next track">
-            <i class="fas fa-forward"></i>
+            <svg class="btn-nav" focusable="false" aria-hidden="false">
+              <use xlink:href="#btn-skipforward"></use>
+            </svg>
           </button>
           <button id="volume" class="action-btn" aria-label="Volume">
-            <img src="./assets/images/volume.svg" class="volume-img" alt="Set volume">
+            <svg focusable="false" aria-hidden="false">
+              <use xlink:href="#btn-volume"></use>
+            </svg>
           </button>
           <div class="setvolume" tabindex="0" id="volume-bar" aria-label="Set volume">
             <span id="top-arrow"></span>
@@ -57,7 +98,11 @@
       </div>
     </section>
     <section id="player-list">
-      <button class="btn-list"><img src="./assets/images/list.svg" alt=""></button>
+      <button class="btn-list">
+        <svg class="btn-play" focusable="false" aria-hidden="false">
+          <use xlink:href="#btn-list"></use>
+        </svg>
+      </button>
       <div id="container-list" class="tunes-list">
         <ul id="songs-list">
           <li><span class="thumb"><img src="./assets/images/amy.png" width="50" height="50"

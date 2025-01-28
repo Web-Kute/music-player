@@ -195,17 +195,17 @@ document.addEventListener('DOMContentLoaded', () => {
 
   function playSong() {
     musicContainer.classList.add('play');
-    playBtn.querySelector('i.fas').classList.remove('fa-play');
-    playBtn.querySelector('i.fas').classList.add('fa-pause');
-    playBtn.querySelector('.fa-pause').classList.add('active');
+    playBtn.querySelector('.btn-pause').classList.remove('hide');
+    playBtn.querySelector('.btn-play').classList.add('hide');
+    // playBtn.querySelector('.btn-play').classList.add('active');
     audio.play();
   }
 
   function pauseSong() {
     musicContainer.classList.remove('play');
-    playBtn.querySelector('i.fas').classList.add('fa-play');
-    playBtn.querySelector('i.fas').classList.remove('fa-pause');
-    playBtn.querySelector('.fa-play').classList.remove('active');
+    playBtn.querySelector('.btn-pause').classList.add('hide');
+    playBtn.querySelector('.btn-play').classList.remove('hide');
+    // playBtn.querySelector('.btn-pause').classList.remove('active');
     audio.pause();
   }
 

@@ -151,23 +151,12 @@ input[type='range']:focus {
   background-color: $white;
   border: 0;
   color: $secondaryColor;
-  font-size: 1.5rem;
   cursor: pointer;
   padding: 10px;
   margin: 0 5px;
   transition: color 300ms;
   &:hover {
     color: $primaryColor;
-  }
-}
-
-.action-btn.action-btn-big {
-  color: $primaryColor;
-  opacity: 0.5;
-  font-size: 1.875rem;
-  transition: opacity 300ms;
-  &:hover {
-    opacity: 1;
   }
 }
 
@@ -222,7 +211,7 @@ input[type='range']:focus {
 }
 
 #volume {
-  opacity: 0.4;
+  opacity: 0.6;
   background-color: transparent;
   height: 90px;
   &:hover {
@@ -332,14 +321,28 @@ section#player-list {
   display: none;
 }
 
+.btn-nav {
+  opacity: 0.8;
+  &:hover {
+    opacity: 1;
+    animation: zoomin 1000ms ease-in;
+  }
+}
+
 .btn-list {
   position: relative;
+  opacity: 0.6;
   width: 2rem;
   top: 1.1rem;
   z-index: 2;
   @include mixins.flex-center();
   margin-left: auto;
   margin-right: auto;
+  @include mixins.transition(opacity, 300ms, ease-in);
+  &:hover,
+  &:focus {
+    opacity: 1;
+  }
 }
 
 .play-btn {
@@ -454,11 +457,11 @@ ul {
 }
 
 .show {
-  visibility: visible;
+  display: block;
 }
 
 .hide {
-  visibility: hidden;
+  display: none;
 }
 
 @keyframes fadein {
@@ -497,4 +500,23 @@ ul {
   to {
     transform: translateY(-100%);
   }
+}
+
+@keyframes zoomin {
+  0% {
+    scale: 1;
+  }
+  50% {
+    scale: 1.5;
+  }
+  100% {
+    scale: 1;
+  }
+}
+
+svg {
+  height: 1.5rem;
+  width: 1.5rem;
+  overflow: visible;
+  vertical-align: middle;
 }
