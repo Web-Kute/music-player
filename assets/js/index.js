@@ -61,7 +61,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Fetch music data
   async function listenTotheMusic(endpoint) {
-    data = await fetchMusicData(endpoint);
+    data = await fetchMusicData(endpoint, 30);
     tuneIndex = Math.floor(Math.random() * data.length);
     playListLength = data.length;
     showSpinner();

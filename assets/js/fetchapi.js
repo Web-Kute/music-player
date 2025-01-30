@@ -1,10 +1,14 @@
 // const baseURL = 'https://api.deezer.com/';
-// console.log(baseURL);
-export async function fetchMusicData(endpoint) {
+
+import { fisherYatesShuffle } from './random.js';
+export async function fetchMusicData(endpoint, limit = 15) {
   try {
-    const response = await fetch(endpoint);
+    const response = await fetch(`${endpoint}`);
     const data = await response.json();
-    return data;
+    let randomData = fisherYatesShuffle(Array.from(data))
+      .slice(0, limit)
+      .map((id) => id);
+    return randomData;
   } catch (error) {
     console.log(error);
   }
