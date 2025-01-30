@@ -5,9 +5,7 @@ export async function fetchMusicData(endpoint, limit = 15) {
   try {
     const response = await fetch(`${endpoint}`);
     const data = await response.json();
-    let randomData = fisherYatesShuffle(Array.from(data))
-      .slice(0, limit)
-      .map((id) => id);
+    let randomData = fisherYatesShuffle(Array.from(data)).slice(0, limit);
     return randomData;
   } catch (error) {
     console.log(error);
