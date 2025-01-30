@@ -250,5 +250,68 @@
     "title": "The Sweetest Thing",
     "artist": "Camera Obscura",
     "jacket": "obscura.png"
+  },
+  {
+    "id": 37,
+    "track": "Jerome",
+    "title": "Jerome",
+    "artist": "Lykke Li",
+    "jacket": "lykkeli.png"
+  },
+  {
+    "id": 38,
+    "track": "Blow",
+    "title": "Blow",
+    "artist": "Ghinzu",
+    "jacket": "ghinzu.png"
+  },
+  {
+    "id": 39,
+    "track": "MilongaDelMar",
+    "title": "Milonga Del Mar",
+    "artist": "Yonderboi",
+    "jacket": "yonderboi.png"
+  },
+  {
+    "id": 40,
+    "track": "OntheSea",
+    "title": "On the Sea",
+    "artist": "Beach House",
+    "jacket": "beachhouse.png"
+  },
+  {
+    "id": 41,
+    "track": "ProtectMe",
+    "title": "Protect Me...",
+    "artist": "Placebo",
+    "jacket": "placebo.png"
+  },
+  {
+    "id": 42,
+    "track": "ToAllOfYou",
+    "title": "To All Of You",
+    "artist": "Syd Matters",
+    "jacket": "sydmatters.png"
+  },
+  {
+    "id": 43,
+    "track": "Tonabsence",
+    "title": "Ton Absence",
+    "artist": "Tété",
+    "jacket": "tete.png"
+  },
+  {
+    "id": 44,
+    "track": "VodkaFraise",
+    "title": "Vodka Fraise",
+    "artist": "Zaza Fournier",
+    "jacket": "zazafournier.png"
+  },
+  {
+    "id": 45,
+    "track": "porunacabeza",
+    "title": "Por Una Cabeza",
+    "artist": "Carlos Gardel",
+    "jacket": "carlosgardel.png"
   }
 ]

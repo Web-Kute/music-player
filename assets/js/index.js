@@ -105,6 +105,8 @@ document.addEventListener('DOMContentLoaded', () => {
         loadedCount++;
         if (loadedCount === data.length) {
           songsList.innerHTML = dataLi.join('');
+        } else {
+          songsList.innerHTML = dataLi.filter(Boolean).join('');
           hideSpinner();
         }
         const thumbNail = document.querySelectorAll('.thumb');
