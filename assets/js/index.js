@@ -25,6 +25,7 @@ document.addEventListener('DOMContentLoaded', () => {
     songsList: document.getElementById('songs-list'),
     btnList: document.querySelector('.btn-list'),
     musicInfo: document.querySelector('.music-info'),
+    btnMore: document.querySelector('.btn-more'),
   };
 
   const {
@@ -50,19 +51,20 @@ document.addEventListener('DOMContentLoaded', () => {
     songsList,
     btnList,
     musicInfo,
+    btnMore,
   } = elements;
 
   let playListLength;
   let tuneIndex;
   let data;
   let nextSong;
+  let more = 10;
   const primaryColor = '#9831ff';
   const secondaryColor = '#cdc2d0';
 
   // Fetch music data
   async function listenTotheMusic(endpoint) {
-    data = await fetchMusicData(endpoint, 10);
-    // tuneIndex = Math.floor(Math.random() * data.length);
+    data = await fetchMusicData(endpoint);
     tuneIndex = 0;
     playListLength = data.length;
     showSpinner();
@@ -88,39 +90,45 @@ document.addEventListener('DOMContentLoaded', () => {
       });
     };
 
-    const dataLi = [];
-    let loadedCount = 0;
-    data.forEach((song, index) => {
-      const audioElement = new Audio(`./assets/music/${song.track}.mp3`);
+    let pagination = data.slice(0, more);
 
-      audioElement.addEventListener('loadedmetadata', () => {
-        const duration = audioElement.duration;
-        const minutes = Math.floor(duration / 60);
-        const seconds = Math.floor(duration % 60);
+    function addMoreSongs() {
+      if (more < data.length) {
+        const additionalSongs = data.slice(more, more + 10);
+        more += additionalSongs.length;
+        pagination = pagination.concat(additionalSongs);
+        updateSongsList(pagination);
+      } else if (pagination.length === data.length) {
+        btnMore.classList.add('disabled');
+      }
+    }
+    updateSongsList(pagination);
+    btnMore.addEventListener('click', addMoreSongs);
 
-        dataLi[index] =
-          `<li tabindex="0" class="tune"><span class="thumb link" data-index="${index}"><img src="./assets/images/${song.jacket}" width="50" height="50"
-      alt="${song.title}"></span><span class="link" data-index="${index}"><a href="#">${song.title}</a></span><span>${song.artist}</span><span>${minutes}&nbsp;:&nbsp;${seconds.toString().padStart(2, '0')}</span>
-    </li>`;
+    function updateSongsList(songs) {
+      let dataLi = [];
+      let loadedCount = 0;
 
-        loadedCount++;
-        if (loadedCount === data.length) {
-          songsList.innerHTML = dataLi.join('');
-        } else {
-          songsList.innerHTML = dataLi.filter(Boolean).join('');
-          hideSpinner();
-        }
-        const thumbNail = document.querySelectorAll('.thumb');
+      songs.forEach((song, index) => {
+        const audioElement = new Audio(`./assets/music/${song.track}.mp3`);
 
-        thumbNail.forEach((thumb) => {
-          if (musicInfo.dataset.index === thumb.dataset.index) {
-            thumb.closest('li').classList.add('playing');
+        audioElement.addEventListener('loadedmetadata', () => {
+          const duration = audioElement.duration;
+          const minutes = Math.floor(duration / 60);
+          const seconds = Math.floor(duration % 60);
+
+          dataLi[index] =
+            `<li tabindex="0" class="tune"><span class="thumb link" data-index="${index}"><img src="./assets/images/${song.jacket}" width="50" height="50" alt="${song.title}"></span><span class="link" data-index="${index}"><a href="#">${song.title}</a></span><span>${song.artist}</span><span>${minutes}&nbsp;:&nbsp;${seconds.toString().padStart(2, '0')}</span></li>`;
+
+          loadedCount += 1;
+          if (loadedCount === songs.length) {
+            songsList.innerHTML = dataLi.filter(Boolean).join('');
           } else {
-            thumb.closest('li').classList.remove('playing');
+            hideSpinner();
           }
-        });
 
-        const observer = new MutationObserver(() => {
+          const thumbNail = document.querySelectorAll('.thumb');
+
           thumbNail.forEach((thumb) => {
             if (musicInfo.dataset.index === thumb.dataset.index) {
               thumb.closest('li').classList.add('playing');
@@ -128,14 +136,24 @@ document.addEventListener('DOMContentLoaded', () => {
               thumb.closest('li').classList.remove('playing');
             }
           });
-        });
 
-        observer.observe(musicInfo, {
-          attributes: true,
-          attributeFilter: ['data-index'],
+          const observer = new MutationObserver(() => {
+            thumbNail.forEach((thumb) => {
+              if (musicInfo.dataset.index === thumb.dataset.index) {
+                thumb.closest('li').classList.add('playing');
+              } else {
+                thumb.closest('li').classList.remove('playing');
+              }
+            });
+          });
+
+          observer.observe(musicInfo, {
+            attributes: true,
+            attributeFilter: ['data-index'],
+          });
         });
       });
-    });
+    }
 
     songsList.addEventListener('click', (e) => {
       const thumb = e.target.closest('.link');
@@ -158,7 +176,6 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     loadingSongs(tuneIndex);
-
     const previousSong = () => {
       const isPlaying = musicContainer.classList.contains('play');
       tuneIndex = (tuneIndex - 1 + playListLength) % playListLength;
@@ -200,7 +217,6 @@ document.addEventListener('DOMContentLoaded', () => {
     musicContainer.classList.add('play');
     playBtn.querySelector('.btn-pause').classList.remove('hide');
     playBtn.querySelector('.btn-play').classList.add('hide');
-    // playBtn.querySelector('.btn-play').classList.add('active');
     audio.play();
   }
 
@@ -208,7 +224,6 @@ document.addEventListener('DOMContentLoaded', () => {
     musicContainer.classList.remove('play');
     playBtn.querySelector('.btn-pause').classList.add('hide');
     playBtn.querySelector('.btn-play').classList.remove('hide');
-    // playBtn.querySelector('.btn-pause').classList.remove('active');
     audio.pause();
   }
 
@@ -299,14 +314,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
   function updateVolumeUI(isMuted) {
     if (isMuted) {
-      // volumeImg.src = './assets/images/mute.svg';
       volume.querySelector('.btn-volume').classList.add('hide');
       volume.querySelector('.btn-mute').classList.remove('hide');
       rangeVolume.value = 0;
       rangeVolume.setAttribute('aria-valuenow', '0');
       rangeVolume.style.background = `linear-gradient(to right, ${secondaryColor} 0%, ${secondaryColor} 100%)`;
     } else {
-      // volumeImg.src = './assets/images/volume.svg';
       volume.querySelector('.btn-volume').classList.remove('hide');
       volume.querySelector('.btn-mute').classList.add('hide');
       const sizeBar = audio.volume * 100;

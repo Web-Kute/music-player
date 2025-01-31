@@ -435,9 +435,6 @@ ul {
 .playing {
   background-color: lighten($outerSpace, 66%);
   .thumb {
-    position: relative;
-    width: 50px;
-    cursor: pointer;
     &:hover::after {
       background-color: darken($color: $primaryColor, $amount: 15%);
     }
@@ -484,6 +481,11 @@ ul {
 
 .hide {
   display: none;
+}
+
+.disabled {
+  pointer-events: none;
+  opacity: 0.3;
 }
 
 @keyframes fadein {
