@@ -122,8 +122,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
           loadedCount += 1;
           if (loadedCount === songs.length) {
-            songsList.innerHTML = dataLi.filter(Boolean).join('');
+            songsList.innerHTML = dataLi.join('');
           } else {
+            songsList.innerHTML = dataLi.filter(Boolean).join('');
             hideSpinner();
           }
 
