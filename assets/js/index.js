@@ -26,6 +26,12 @@ document.addEventListener('DOMContentLoaded', () => {
     btnList: document.querySelector('.btn-list'),
     musicInfo: document.querySelector('.music-info'),
     btnMore: document.querySelector('.btn-more'),
+    btnSearch: document.querySelector('.btn-search'),
+    songTitles: document.querySelectorAll('.song-title'),
+    tune: document.querySelectorAll('.tune'),
+    searchInput: document.getElementById('search'),
+    checkBoxTitle: document.getElementById('title-check'),
+    checkBoxArtist: document.getElementById('artist-check'),
   };
 
   const {
@@ -52,6 +58,12 @@ document.addEventListener('DOMContentLoaded', () => {
     btnList,
     musicInfo,
     btnMore,
+    btnSearch,
+    songTitles,
+    tune,
+    searchInput,
+    checkBoxTitle,
+    checkBoxArtist,
   } = elements;
 
   let playListLength;
@@ -118,7 +130,7 @@ document.addEventListener('DOMContentLoaded', () => {
           const seconds = Math.floor(duration % 60);
 
           dataLi[index] =
-            `<li tabindex="0" class="tune"><span class="thumb link" data-index="${index}"><img src="./assets/images/${song.jacket}" width="50" height="50" alt="${song.title}"></span><span class="link" data-index="${index}"><a href="#">${song.title}</a></span><span>${song.artist}</span><span>${minutes}&nbsp;:&nbsp;${seconds.toString().padStart(2, '0')}</span></li>`;
+            `<li tabindex="0" class="tune"><span class="thumb link" data-index="${index}"><img src="./assets/images/${song.jacket}" width="50" height="50" alt="${song.title}"></span><span class="link" data-index="${index}"><a href="#" class="song-title">${song.title}</a></span><span class="song-artist">${song.artist}</span><span>${minutes}&nbsp;:&nbsp;${seconds.toString().padStart(2, '0')}</span></li>`;
 
           loadedCount += 1;
           if (loadedCount === songs.length) {
@@ -329,6 +341,49 @@ document.addEventListener('DOMContentLoaded', () => {
       rangeVolume.style.background = `linear-gradient(to right, ${primaryColor} 0%, ${primaryColor} ${sizeBar}%, ${secondaryColor} ${sizeBar}%, ${secondaryColor} 100%)`;
     }
   }
+
+  function debounced(delay, fn) {
+    let timerId;
+    return function (...args) {
+      if (timerId) {
+        clearTimeout(timerId);
+      }
+      timerId = setTimeout(() => {
+        fn(...args);
+        timerId = null;
+      }, delay);
+    };
+  }
+
+  let userSearch;
+  function handleSearch(event) {
+    event.preventDefault();
+    containerList.classList.add('show-playlist');
+    userSearch = event.target.value.toLowerCase();
+    const songTitles = document.querySelectorAll('.song-title');
+    const songArtists = document.querySelectorAll('.song-artist');
+    let label = [];
+
+    if (checkBoxArtist.checked) {
+      label = songArtists;
+    } else if (checkBoxTitle.checked) {
+      label = songTitles;
+    }
+
+    label.forEach((item) => {
+      const text = item.innerText.toLowerCase();
+      const isMatch = text.includes(userSearch);
+      item.closest('li').classList.toggle('hide', !isMatch);
+    });
+  }
+
+  const searchFilter = debounced(300, handleSearch);
+
+  searchInput.addEventListener('input', searchFilter);
+
+  // btnSearch.addEventListener('click', () => {
+  //   containerList.classList.add('show-playlist');
+  // });
 
   volumeBar.addEventListener('mouseover', () => {
     volume.style.opacity = 1;

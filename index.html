@@ -50,9 +50,28 @@
       <line x1="12" y1="8" x2="12" y2="16"></line>
       <line x1="8" y1="12" x2="16" y2="12"></line>
     </symbol>
+    <symbol id="searchbar" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+      stroke="#444444" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <circle cx="11" cy="11" r="8"></circle>
+      <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+    </symbol>
   </svg>
   <header>
     <h1>Nosta Musica</h1>
+    <div class="searchbar">
+      <input type="search" name="search" id="search">
+      <div>
+        <label for="title-check">Titre</label>
+        <input type="checkbox" name="title" id="title-check" checked>
+        <label for="artist-check">Artiste</label>
+        <input type="checkbox" name="artist" id="artist-check" checked>
+      </div>
+      <!-- <button class="btn-search">
+        <svg focusable="false" aria-hidden="false">
+          <use xlink:href="#searchbar"></use>
+        </svg>
+      </button> -->
+    </div>
   </header>
   <main>
     <section>
