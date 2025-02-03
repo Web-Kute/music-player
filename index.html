@@ -57,9 +57,9 @@
     </symbol>
   </svg>
   <header>
-    <h1>Nosta Musica</h1>
+    <h1>Musica Nost<sup>r</sup>a</h1>
     <div class="searchbar">
-      <input type="search" name="search" id="search">
+      <input type="search" name="search" id="search" maxlength="15">
       <div>
         <label for="title-check">Titre</label>
         <input type="checkbox" name="title" id="title-check" checked>
@@ -121,7 +121,7 @@
             </svg>
           </button>
           <div class="setvolume" tabindex="0" id="volume-bar" aria-labelledby="volume-label">
-            <span id="top-arrow"></span>
+            <!--<span id="top-arrow"></span>-->
             <label id="volume-label" class="visually-hidden"></label>
             <input type="range" value="40" min="0" max="100" step="0.01" class="progress-vol" aria-valuenow="40"
               id="range-volume">
@@ -142,14 +142,17 @@
             </li>
           </ul>
           <div class="more">
-            <svg class="btn-more" focusable="false" aria-hidden="false">
-              <use xlink:href="#btn-more"></use>
-            </svg>
+            <a href="#bottom">
+              <svg class="btn-more" focusable="false" aria-hidden="false">
+                <use xlink:href="#btn-more"></use>
+              </svg>
+            </a>
           </div>
         </div>
       </article>
     </section>
     <footer>
+      <div id="bottom"></div>
       <p>&copy; 2023 Music Player. All rights reserved.</p>
     </footer>
     <div class="overlay"></div>

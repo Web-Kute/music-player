@@ -110,6 +110,7 @@ document.addEventListener('DOMContentLoaded', () => {
         more += additionalSongs.length;
         pagination = pagination.concat(additionalSongs);
         updateSongsList(pagination);
+        searchInput.value = '';
       } else if (pagination.length === data.length) {
         btnMore.classList.add('disabled');
       }
@@ -358,6 +359,9 @@ document.addEventListener('DOMContentLoaded', () => {
   let userSearch;
   function handleSearch(event) {
     event.preventDefault();
+    if (searchInput.value === '') {
+      tune.forEach((li) => li.classList.remove('hide'));
+    }
     containerList.classList.add('show-playlist');
     userSearch = event.target.value.toLowerCase();
     const songTitles = document.querySelectorAll('.song-title');
@@ -380,6 +384,27 @@ document.addEventListener('DOMContentLoaded', () => {
   const searchFilter = debounced(300, handleSearch);
 
   searchInput.addEventListener('input', searchFilter);
+
+  checkBoxTitle.addEventListener('change', () => {
+    document.querySelectorAll('.song-title').forEach((item) => {
+      const text = item.innerText.toLowerCase();
+      const isMatch = text.includes(userSearch);
+      item.closest('li').classList.toggle('hide', !isMatch);
+    });
+  });
+  checkBoxArtist.addEventListener('change', () => {
+    document.querySelectorAll('.song-artist').forEach((item) => {
+      const text = item.innerText.toLowerCase();
+      const isMatch = text.includes(userSearch);
+      item.closest('li').classList.toggle('hide', !isMatch);
+    });
+  });
+
+  function resetSearch() {
+    tune.forEach((li) => {
+      li.classList.remove('hide');
+    });
+  }
 
   // btnSearch.addEventListener('click', () => {
   //   containerList.classList.add('show-playlist');
